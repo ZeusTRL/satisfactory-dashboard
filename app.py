@@ -9,17 +9,16 @@ app = dash.Dash(__name__)
 
 # === Layout ===
 app.layout = html.Div([
-    html.H1("Satisfactory Factory Dashboard"),
+html.Div([
+    html.Label("Uranium Reactors:"),
+    dcc.Input(id='input-uranium', type='number', min=0, step=1, value=25),
 
-    html.Label("Number of Ficsonium Reactors:"),
-    dcc.Slider(
-        id='ficsonium-slider',
-        min=25,
-        max=200,
-        step=5,
-        value=100,
-        marks={i: str(i) for i in range(25, 201, 25)}
-    ),
+    html.Label("Plutonium Reactors:", style={'marginLeft': '30px'}),
+    dcc.Input(id='input-plutonium', type='number', min=0, step=1, value=20),
+
+    html.Label("Ficsonium Reactors:", style={'marginLeft': '30px'}),
+    dcc.Input(id='input-ficsonium', type='number', min=0, step=1, value=100),
+], style={'marginBottom': '20px'}),
 
     dcc.Graph(id='production-graph'),
 
@@ -43,10 +42,16 @@ app.layout = html.Div([
     Output('uranium-table', 'children'),
     Output('plutonium-table', 'children'),
     Output('ficsonium-table', 'children'),
-    Input('ficsonium-slider', 'value')
+    Input('input-uranium', 'value'),
+    Input('input-plutonium', 'value'),
+    Input('input-ficsonium', 'value')
 )
-def update_dashboard(ficsonium_reactors):
-    data = calculate_factory(ficsonium_reactors)
+def update_dashboard(uranium_reactors, plutonium_reactors, ficsonium_reactors):
+    data = calculate_factory(
+    uranium_reactors=uranium_reactors,
+    plutonium_reactors=plutonium_reactors,
+    ficsonium_reactors=ficsonium_reactors
+    )
 
     uranium_rate = data["Uranium Fuel Rod Chain"]["Manufacturers"] * 0.4
     plutonium_rate = data["Plutonium Fuel Rod Chain"]["Manufacturers"] * 0.25
