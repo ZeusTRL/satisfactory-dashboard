@@ -3,7 +3,7 @@ from math import ceil
 from collections import defaultdict
 
 # === Load recipes from the pretty JSON file ===
-with open("saitsfactory_recipes.json") as f:
+with open("satisfactory_recipes.json") as f:
     raw_recipes = json.load(f)
 
 # === Index recipes by product name ===
