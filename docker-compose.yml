@@ -1,0 +1,7 @@
+services:
+  satisfactory-dashboard:
+    build: .
+    container_name: satisfactory_dashboard
+    ports:
+      - "8050:8050"
+    restart: unless-stopped
