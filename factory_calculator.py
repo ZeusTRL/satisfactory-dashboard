@@ -1,8 +1,14 @@
 from math import ceil
 from collections import defaultdict
 
-def calculate_factory(ficsonium_reactors=100):
+def calculate_factory(ficsonium_reactors=100, uranium_reactors=None, plutonium_reactors=None):
     summary = defaultdict(dict)
+
+    # === Reactor Setup ===
+    if plutonium_reactors is None:
+        plutonium_reactors = ficsonium_reactors // 5
+    if uranium_reactors is None:
+        uranium_reactors = ficsonium_reactors // 4
 
     # === Reactor Setup ===
     plutonium_reactors = ficsonium_reactors // 5
