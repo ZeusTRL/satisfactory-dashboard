@@ -7,7 +7,7 @@ import json
 from factory_calculator import calculate_factory
 
 # === Load available product names from recipe file ===
-with open("saitsfactory_recipes.json") as f:
+with open("satisfactory_recipes.json") as f:
     raw_recipes = json.load(f)
 
 PRODUCT_OPTIONS = [
