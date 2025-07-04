@@ -15,6 +15,17 @@ for recipe in RAW_RECIPES:
     for product in recipe.get("Products", []):
         ITEM_NAME_LOOKUP[product["ItemClass"]] = recipe.get("DisplayName", product["ItemClass"])
 
+# === Build machine name lookup ===
+MACHINE_NAME_LOOKUP = {
+    "Build_ConstructorMk1_C": "Constructor",
+    "Build_AssemblerMk1_C": "Assembler",
+    "Build_ManufacturerMk1_C": "Manufacturer",
+    "Build_Refinery_C": "Refinery",
+    "Build_Packager_C": "Packager",
+    "Build_Blender_C": "Blender",
+    "Build_SmelterMk1_C": "Smelter",
+    # Add more as needed
+}
 
 product_options = [
     {"label": recipe["DisplayName"], "value": recipe["Products"][0]["ItemClass"]}
@@ -33,7 +44,7 @@ app.layout = html.Div([
         dcc.Dropdown(
             id="product-select",
             options=product_options,
-            value=product_options[0]["value"]  # Default to first item
+            value=product_options[0]["value"] if product_options else None  # Pulls value or sets value to none if no value returned
         ),
     ], style={"marginBottom": "15px"}),
 
@@ -56,8 +67,15 @@ app.layout = html.Div([
     Input("product-select", "value"),
     Input("production-rate", "value")
 )
+
 def update_dashboard(product_class, rate):
+    
+    print("Selected:", product_class, "| Rate:", rate)
+    
     chains = resolve_inputs(product_class, rate)
+    
+    if not chains:
+        return html.Div("⚠️ No valid production chain found."), html.Div()
 
     machine_blocks = []
     input_blocks = []
@@ -66,7 +84,7 @@ def update_dashboard(product_class, rate):
         machine_blocks.append(html.Div([
             html.H3(ITEM_NAME_LOOKUP.get(chain['name'], chain['name'])),
             html.Ul([
-                html.Li(f"Machine: {chain['machine']}"),
+                html.Li(f"Machine: {MACHINE_NAME_LOOKUP.get(chain['machine'], chain['machine'])}"),
                 html.Li(f"Machines Required: {chain['machines']}")
             ])
         ]))

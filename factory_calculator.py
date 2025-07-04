@@ -69,3 +69,4 @@ def resolve_inputs(product_class: str, rate: float, visited=None):
         chains.extend(subchains)
 
     return chains
+
