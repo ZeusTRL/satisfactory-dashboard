@@ -6,22 +6,32 @@ from collections import defaultdict
 with open("clean_recipes.json") as f:
     RAW_RECIPES = json.load(f)
 
-# Index recipes by product item class
+# === Build recipe index with preferred sorting ===
 RECIPE_INDEX = {}
+
+def is_clean_recipe(r):
+    return (
+        "Alternate" not in r["ClassName"]
+        and "Christmas" not in r["ClassName"]
+        and len(r.get("Ingredients", [])) > 0
+        and len(r.get("Products", [])) > 0
+    )
+
 for recipe in RAW_RECIPES:
+    if not is_clean_recipe(recipe):
+        continue
     for product in recipe.get("Products", []):
         RECIPE_INDEX.setdefault(product["ItemClass"], []).append(recipe)
 
+# Prefer recipes with fewer ingredients (simplest path)
+for k in RECIPE_INDEX:
+    RECIPE_INDEX[k] = sorted(RECIPE_INDEX[k], key=lambda r: len(r.get("Ingredients", [])))
 
 def calculate_factory(product_class: str, target_rate: float):
     if product_class not in RECIPE_INDEX:
         raise ValueError(f"No recipe found for product '{product_class}'")
 
-    recipe_list = RECIPE_INDEX[product_class]
-    
-    # Optionally filter for vanilla recipes (non-alternate)
-    filtered = [r for r in recipe_list if "Alternate" not in r["ClassName"]]
-    recipe = filtered[0] if filtered else recipe_list[0]
+    recipe = RECIPE_INDEX[product_class][0]  # Use preferred recipe
 
     product_info = next((p for p in recipe["Products"] if p["ItemClass"] == product_class), None)
     if not product_info:
@@ -46,11 +56,11 @@ def calculate_factory(product_class: str, target_rate: float):
 
     return summary
 
-def resolve_inputs(product_class: str, rate: float, visited=None):
+def resolve_inputs(product_class: str, rate: float, visited=None, depth=0, max_depth=6):
     if visited is None:
         visited = set()
 
-    if product_class in visited:
+    if product_class in visited or depth > max_depth:
         return []
     visited.add(product_class)
 
@@ -70,8 +80,7 @@ def resolve_inputs(product_class: str, rate: float, visited=None):
     }]
 
     for input_item, input_rate in chain_data["Inputs"].items():
-        subchains = resolve_inputs(input_item, input_rate, visited)
+        subchains = resolve_inputs(input_item, input_rate, visited, depth + 1, max_depth)
         chains.extend(subchains)
 
     return chains
-
