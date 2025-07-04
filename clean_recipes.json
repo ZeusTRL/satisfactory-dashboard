@@ -1,0 +1,3039 @@
+[
+  {
+    "ClassName": "Recipe_IronPlate_C",
+    "DisplayName": "Iron Plate",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IronRod_C",
+    "DisplayName": "Iron Rod",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IngotIron_C",
+    "DisplayName": "Iron Ingot",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_RocketFuel_Nitro_C",
+    "DisplayName": "Alternate: Nitro Rocket Fuel",
+    "Duration": 2.4,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_RocketFuel_C",
+    "DisplayName": "Rocket Fuel",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedRocketFuel_C",
+    "DisplayName": "Packaged Rocket Fuel",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageRocketFuel_C",
+    "DisplayName": "Unpackage Rocket Fuel",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_IonizedFuel_Dark_C",
+    "DisplayName": "Alternate: Dark-Ion Fuel",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_DarkEnergy_C",
+    "DisplayName": "Dark Matter Residue",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_QuantumEnergy_C",
+    "DisplayName": "Excited Photonic Matter",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_DarkMatter_C",
+    "DisplayName": "Dark Matter Crystal",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SuperpositionOscillator_C",
+    "DisplayName": "Superposition Oscillator",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/QuantumEncoder/Build_QuantumEncoder.Build_QuantumEncoder_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_TemporalProcessor_C",
+    "DisplayName": "Neural-Quantum Processor",
+    "Duration": 20.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/QuantumEncoder/Build_QuantumEncoder.Build_QuantumEncoder_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_12_C",
+    "DisplayName": "AI Expansion Server",
+    "Duration": 15.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/QuantumEncoder/Build_QuantumEncoder.Build_QuantumEncoder_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IonizedFuel_C",
+    "DisplayName": "Ionized Fuel",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedIonizedFuel_C",
+    "DisplayName": "Packaged Ionized Fuel",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageIonizedFuel_C",
+    "DisplayName": "Unpackage Ionized Fuel",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Diamond_Turbo_C",
+    "DisplayName": "Alternate: Turbo Diamonds",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SAMFluctuator_C",
+    "DisplayName": "SAM Fluctuator",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FicsiteMesh_C",
+    "DisplayName": "Ficsite Trigon",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FicsiteIngot_Iron_C",
+    "DisplayName": "Ficsite Ingot (Iron)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_TimeCrystal_C",
+    "DisplayName": "Time Crystal",
+    "Duration": 10.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Diamond_C",
+    "DisplayName": "Diamonds",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IngotSAM_C",
+    "DisplayName": "Reanimated SAM",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_10_C",
+    "DisplayName": "Biochemical Sculptor",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FicsiteIngot_AL_C",
+    "DisplayName": "Ficsite Ingot (Aluminum)",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FicsiteIngot_CAT_C",
+    "DisplayName": "Ficsite Ingot (Caterium)",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Bauxite_Caterium_C",
+    "DisplayName": "Bauxite (Caterium)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Bauxite_Copper_C",
+    "DisplayName": "Bauxite (Copper)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Caterium_Copper_C",
+    "DisplayName": "Caterium Ore (Copper)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Caterium_Quartz_C",
+    "DisplayName": "Caterium Ore (Quartz)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Coal_Iron_C",
+    "DisplayName": "Coal (Iron)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Coal_Limestone_C",
+    "DisplayName": "Coal (Limestone)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Copper_Quartz_C",
+    "DisplayName": "Copper Ore (Quartz)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Copper_Sulfur_C",
+    "DisplayName": "Copper Ore (Sulfur)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Iron_Limestone_C",
+    "DisplayName": "Iron Ore (Limestone)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Limestone_Sulfur_C",
+    "DisplayName": "Limestone (Sulfur)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Nitrogen_Bauxite_C",
+    "DisplayName": "Nitrogen Gas (Bauxite)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Nitrogen_Caterium_C",
+    "DisplayName": "Nitrogen Gas (Caterium)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Quartz_Bauxite_C",
+    "DisplayName": "Raw Quartz (Bauxite)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Quartz_Coal_C",
+    "DisplayName": "Raw Quartz (Coal)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Sulfur_Coal_C",
+    "DisplayName": "Sulfur (Coal)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Sulfur_Iron_C",
+    "DisplayName": "Sulfur (Iron)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Uranium_Bauxite_C",
+    "DisplayName": "Uranium Ore (Bauxite)",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Turbofuel_C",
+    "DisplayName": "Turbofuel",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedTurboFuel_C",
+    "DisplayName": "Packaged Turbofuel",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageTurboFuel_C",
+    "DisplayName": "Unpackage Turbofuel",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Coal_1_C",
+    "DisplayName": "Alternate: Charcoal",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Coal_2_C",
+    "DisplayName": "Alternate: Biocoal",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_EnrichedCoal_C",
+    "DisplayName": "Alternate: Compacted Coal",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CircuitBoard_C",
+    "DisplayName": "Circuit Board",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_LiquidFuel_C",
+    "DisplayName": "Fuel",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PetroleumCoke_C",
+    "DisplayName": "Petroleum Coke",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Plastic_C",
+    "DisplayName": "Plastic",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Rubber_C",
+    "DisplayName": "Rubber",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_ResidualFuel_C",
+    "DisplayName": "Residual Fuel",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_ResidualPlastic_C",
+    "DisplayName": "Residual Plastic",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_ResidualRubber_C",
+    "DisplayName": "Residual Rubber",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Diamond_Pink_C",
+    "DisplayName": "Alternate: Pink Diamonds",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Converter/Build_Converter.Build_Converter_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Diamond_Petroleum_C",
+    "DisplayName": "Alternate: Petroleum Diamonds",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Diamond_OilBased_C",
+    "DisplayName": "Alternate: Oil-Based Diamonds",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Diamond_Cloudy_C",
+    "DisplayName": "Alternate: Cloudy Diamonds",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_DarkMatter_Trap_C",
+    "DisplayName": "Alternate: Dark Matter Trap",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_DarkMatter_Crystallization_C",
+    "DisplayName": "Alternate: Dark Matter Crystallization",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_WetConcrete_C",
+    "DisplayName": "Alternate: Wet Concrete",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_TurboHeavyFuel_C",
+    "DisplayName": "Alternate: Turbo Heavy Fuel",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteelRod_C",
+    "DisplayName": "Alternate: Steel Rod",
+    "Duration": 5.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SteelBeam_C",
+    "DisplayName": "Steel Beam",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SteelPipe_C",
+    "DisplayName": "Steel Pipe",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IngotSteel_C",
+    "DisplayName": "Steel Ingot",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_2_C",
+    "DisplayName": "Versatile Framework",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteelCanister_C",
+    "DisplayName": "Alternate: Steel Canister",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FluidCanister_C",
+    "DisplayName": "Empty Canister",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Fuel_C",
+    "DisplayName": "Packaged Fuel",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_LiquidBiofuel_C",
+    "DisplayName": "Liquid Biofuel",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedBiofuel_C",
+    "DisplayName": "Packaged Liquid Biofuel",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedCrudeOil_C",
+    "DisplayName": "Packaged Oil",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedOilResidue_C",
+    "DisplayName": "Packaged Heavy Oil Residue",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedWater_C",
+    "DisplayName": "Packaged Water",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageBioFuel_C",
+    "DisplayName": "Unpackage Liquid Biofuel",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageFuel_C",
+    "DisplayName": "Unpackage Fuel",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageOil_C",
+    "DisplayName": "Unpackage Oil",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageOilResidue_C",
+    "DisplayName": "Unpackage Heavy Oil Residue",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageWater_C",
+    "DisplayName": "Unpackage Water",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteamedCopperSheet_C",
+    "DisplayName": "Alternate: Steamed Copper Sheet",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_RubberConcrete_C",
+    "DisplayName": "Alternate: Rubber Concrete",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_RecycledRubber_C",
+    "DisplayName": "Alternate: Recycled Rubber",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PureQuartzCrystal_C",
+    "DisplayName": "Alternate: Pure Quartz Crystal",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_QuartzCrystal_C",
+    "DisplayName": "Quartz Crystal",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PureIronIngot_C",
+    "DisplayName": "Alternate: Pure Iron Ingot",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PureCopperIngot_C",
+    "DisplayName": "Alternate: Pure Copper Ingot",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PureCateriumIngot_C",
+    "DisplayName": "Alternate: Pure Caterium Ingot",
+    "Duration": 5.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PureAluminumIngot_C",
+    "DisplayName": "Alternate: Pure Aluminum Ingot",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_AluminumCasing_C",
+    "DisplayName": "Aluminum Casing",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_AluminumSheet_C",
+    "DisplayName": "Alclad Aluminum Sheet",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_AluminaSolution_C",
+    "DisplayName": "Alumina Solution",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_AluminumScrap_C",
+    "DisplayName": "Aluminum Scrap",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedAlumina_C",
+    "DisplayName": "Packaged Alumina Solution",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IngotAluminum_C",
+    "DisplayName": "Aluminum Ingot",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Silica_C",
+    "DisplayName": "Silica",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CrystalOscillator_C",
+    "DisplayName": "Crystal Oscillator",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageAlumina_C",
+    "DisplayName": "Unpackage Alumina Solution",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PolymerResin_C",
+    "DisplayName": "Alternate: Polymer Resin",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PlasticSmartPlating_C",
+    "DisplayName": "Alternate: Plastic Smart Plating",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_HighSpeedWiring_C",
+    "DisplayName": "Alternate: Automated Speed Wiring",
+    "Duration": 32.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_EncasedIndustrialBeam_C",
+    "DisplayName": "Encased Industrial Beam",
+    "Duration": 10.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Motor_C",
+    "DisplayName": "Motor",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Stator_C",
+    "DisplayName": "Stator",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_3_C",
+    "DisplayName": "Automated Wiring",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_AILimiter_C",
+    "DisplayName": "AI Limiter",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_HeavyOilResidue_C",
+    "DisplayName": "Alternate: Heavy Oil Residue",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_HeavyFlexibleFrame_C",
+    "DisplayName": "Alternate: Heavy Flexible Frame",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Computer_C",
+    "DisplayName": "Computer",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_ModularFrameHeavy_C",
+    "DisplayName": "Heavy Modular Frame",
+    "Duration": 30.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_4_C",
+    "DisplayName": "Modular Engine",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_5_C",
+    "DisplayName": "Adaptive Control Unit",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_FusedWire_C",
+    "DisplayName": "Alternate: Fused Wire",
+    "Duration": 20.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_FlexibleFramework_C",
+    "DisplayName": "Alternate: Flexible Framework",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ElectrodeCircuitBoard_C",
+    "DisplayName": "Alternate: Electrode Circuit Board",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ElectroAluminumScrap_C",
+    "DisplayName": "Alternate: Electrode Aluminum Scrap",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_DilutedPackagedFuel_C",
+    "DisplayName": "Alternate: Diluted Packaged Fuel",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CopperRotor_C",
+    "DisplayName": "Alternate: Copper Rotor",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_ModularFrame_C",
+    "DisplayName": "Modular Frame",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Rotor_C",
+    "DisplayName": "Rotor",
+    "Duration": 15.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CopperSheet_C",
+    "DisplayName": "Copper Sheet",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_1_C",
+    "DisplayName": "Smart Plating",
+    "Duration": 30.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CopperAlloyIngot_C",
+    "DisplayName": "Alternate: Copper Alloy Ingot",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CokeSteelIngot_C",
+    "DisplayName": "Alternate: Coke Steel Ingot",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CoatedIronPlate_C",
+    "DisplayName": "Alternate: Coated Iron Plate",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CoatedIronCanister_C",
+    "DisplayName": "Alternate: Coated Iron Canister",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CoatedCable_C",
+    "DisplayName": "Alternate: Coated Cable",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_BoltedFrame_C",
+    "DisplayName": "Alternate: Bolted Frame",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_AdheredIronPlate_C",
+    "DisplayName": "Alternate: Adhered Iron Plate",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_TurboPressureMotor_C",
+    "DisplayName": "Alternate: Turbo Pressure Motor",
+    "Duration": 32.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PlutoniumCell_C",
+    "DisplayName": "Encased Plutonium Cell",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PressureConversionCube_C",
+    "DisplayName": "Pressure Conversion Cube",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_NitricAcid_C",
+    "DisplayName": "Nitric Acid",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_NonFissileUranium_C",
+    "DisplayName": "Non-Fissile Uranium",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CopperDust_C",
+    "DisplayName": "Copper Powder",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Plutonium_C",
+    "DisplayName": "Plutonium Pellet",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PlutoniumFuelRod_C",
+    "DisplayName": "Plutonium Fuel Rod",
+    "Duration": 240.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedNitricAcid_C",
+    "DisplayName": "Packaged Nitric Acid",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_9_C",
+    "DisplayName": "Nuclear Pasta",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageNitricAcid_C",
+    "DisplayName": "Unpackage Nitric Acid",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_TurboBlendFuel_C",
+    "DisplayName": "Alternate: Turbo Blend Fuel",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UraniumCell_C",
+    "DisplayName": "Encased Uranium Cell",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CoolingSystem_C",
+    "DisplayName": "Cooling System",
+    "Duration": 10.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Battery_C",
+    "DisplayName": "Battery",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_ComputerSuper_C",
+    "DisplayName": "Supercomputer",
+    "Duration": 32.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_RadioControlUnit_C",
+    "DisplayName": "Radio Control Unit",
+    "Duration": 48.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SulfuricAcid_C",
+    "DisplayName": "Sulfuric Acid",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedSulfuricAcid_C",
+    "DisplayName": "Packaged Sulfuric Acid",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_7_C",
+    "DisplayName": "Assembly Director System",
+    "Duration": 80.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_HighSpeedConnector_C",
+    "DisplayName": "High-Speed Connector",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageSulfuricAcid_C",
+    "DisplayName": "Unpackage Sulfuric Acid",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SuperStateComputer_C",
+    "DisplayName": "Alternate: Super-State Computer",
+    "Duration": 25.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_ElectromagneticControlRod_C",
+    "DisplayName": "Electromagnetic Control Rod",
+    "Duration": 30.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_NuclearFuelRod_C",
+    "DisplayName": "Uranium Fuel Rod",
+    "Duration": 150.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_6_C",
+    "DisplayName": "Magnetic Field Generator",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SloppyAlumina_C",
+    "DisplayName": "Alternate: Sloppy Alumina",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_RadioControlSystem_C",
+    "DisplayName": "Alternate: Radio Control System",
+    "Duration": 40.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PlutoniumFuelUnit_C",
+    "DisplayName": "Alternate: Plutonium Fuel Unit",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_OCSupercomputer_C",
+    "DisplayName": "Alternate: OC Supercomputer",
+    "Duration": 20.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_HeatSink_C",
+    "DisplayName": "Heat Sink",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FusedModularFrame_C",
+    "DisplayName": "Fused Modular Frame",
+    "Duration": 40.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_GasTank_C",
+    "DisplayName": "Empty Fluid Tank",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PackagedNitrogen_C",
+    "DisplayName": "Packaged Nitrogen Gas",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_UnpackageNitrogen_C",
+    "DisplayName": "Unpackage Nitrogen Gas",
+    "Duration": 1.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Packager/Build_Packager.Build_Packager_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_InstantScrap_C",
+    "DisplayName": "Alternate: Instant Scrap",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_InstantPlutoniumCell_C",
+    "DisplayName": "Alternate: Instant Plutonium Cell",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_HeatFusedFrame_C",
+    "DisplayName": "Alternate: Heat-Fused Frame",
+    "Duration": 20.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_FertileUranium_C",
+    "DisplayName": "Alternate: Fertile Uranium",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ElectricMotor_C",
+    "DisplayName": "Alternate: Electric Motor",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_DilutedFuel_C",
+    "DisplayName": "Alternate: Diluted Fuel",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CoolingDevice_C",
+    "DisplayName": "Alternate: Cooling Device",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ClassicBattery_C",
+    "DisplayName": "Alternate: Classic Battery",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_AutomatedMiner_C",
+    "DisplayName": "Alternate: Automated Miner",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_AlcladCasing_C",
+    "DisplayName": "Alternate: Alclad Casing",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteelPipe_Molded_C",
+    "DisplayName": "Alternate: Molded Steel Pipe",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteelPipe_Iron_C",
+    "DisplayName": "Alternate: Iron Pipe",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteelCastedPlate_C",
+    "DisplayName": "Alternate: Steel Cast Plate",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteelBeam_Molded_C",
+    "DisplayName": "Alternate: Molded Beam",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_SteelBeam_Aluminum_C",
+    "DisplayName": "Alternate: Aluminum Beam",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_AluminumRod_C",
+    "DisplayName": "Alternate: Aluminum Rod",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_AILimiter_Plastic_C",
+    "DisplayName": "Alternate: Plastic AI Limiter",
+    "Duration": 15.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Silica_Distilled_C",
+    "DisplayName": "Alternate: Distilled Silica",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Quartz_Purified_C",
+    "DisplayName": "Alternate: Quartz Purification",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Quartz_Fused_C",
+    "DisplayName": "Alternate: Fused Quartz Crystal",
+    "Duration": 20.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_IronIngot_Leached_C",
+    "DisplayName": "Alternate: Leached Iron Ingot",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_IronIngot_Basic_C",
+    "DisplayName": "Alternate: Basic Iron Ingot",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CopperIngot_Tempered_C",
+    "DisplayName": "Alternate: Tempered Copper Ingot",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CopperIngot_Leached_C",
+    "DisplayName": "Alternate: Leached Copper Ingot",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CateriumIngot_Tempered_C",
+    "DisplayName": "Alternate: Tempered Caterium Ingot",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CateriumIngot_Leached_C",
+    "DisplayName": "Alternate: Leached Caterium Ingot",
+    "Duration": 10.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Wire_2_C",
+    "DisplayName": "Alternate: Caterium Wire",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Wire_1_C",
+    "DisplayName": "Alternate: Iron Wire",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_UraniumCell_1_C",
+    "DisplayName": "Alternate: Infused Uranium Cell",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IngotCaterium_C",
+    "DisplayName": "Caterium Ingot",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_TurboMotor_1_C",
+    "DisplayName": "Alternate: Turbo Electric Motor",
+    "Duration": 64.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_MotorTurbo_C",
+    "DisplayName": "Turbo Motor",
+    "Duration": 32.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_8_C",
+    "DisplayName": "Thermal Propulsion Rocket",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Stator_C",
+    "DisplayName": "Alternate: Quickwire Stator",
+    "Duration": 15.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Silica_C",
+    "DisplayName": "Alternate: Cheap Silica",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Screw_2_C",
+    "DisplayName": "Alternate: Steel Screws",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Screw_C",
+    "DisplayName": "Alternate: Cast Screws",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Rotor_C",
+    "DisplayName": "Alternate: Steel Rotor",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_EncasedIndustrialBeam_C",
+    "DisplayName": "Alternate: Encased Industrial Pipe",
+    "Duration": 15.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ReinforcedIronPlate_2_C",
+    "DisplayName": "Alternate: Stitched Iron Plate",
+    "Duration": 32.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ReinforcedIronPlate_1_C",
+    "DisplayName": "Alternate: Bolted Iron Plate",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_RadioControlUnit_1_C",
+    "DisplayName": "Alternate: Radio Connection Unit",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Quickwire_C",
+    "DisplayName": "Alternate: Fused Quickwire",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Plastic_1_C",
+    "DisplayName": "Alternate: Recycled Plastic",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_NuclearFuelRod_1_C",
+    "DisplayName": "Alternate: Uranium Fuel Unit",
+    "Duration": 300.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Motor_1_C",
+    "DisplayName": "Alternate: Rigor Motor",
+    "Duration": 48.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ModularFrame_C",
+    "DisplayName": "Alternate: Steeled Frame",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_IngotSteel_2_C",
+    "DisplayName": "Alternate: Compacted Steel Ingot",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_IngotSteel_1_C",
+    "DisplayName": "Alternate: Solid Steel Ingot",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_IngotIron_C",
+    "DisplayName": "Alternate: Iron Alloy Ingot",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_HighSpeedConnector_C",
+    "DisplayName": "Alternate: Silicon High-Speed Connector",
+    "Duration": 40.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ModularFrameHeavy_C",
+    "DisplayName": "Alternate: Heavy Encased Frame",
+    "Duration": 64.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_HeatSink_1_C",
+    "DisplayName": "Alternate: Heat Exchanger",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Gunpowder_1_C",
+    "DisplayName": "Alternate: Fine Black Powder",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_ElectromagneticControlRod_1_C",
+    "DisplayName": "Alternate: Electromagnetic Connection Rod",
+    "Duration": 15.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CrystalOscillator_C",
+    "DisplayName": "Alternate: Insulated Crystal Oscillator",
+    "Duration": 32.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Concrete_C",
+    "DisplayName": "Alternate: Fine Concrete",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Computer_2_C",
+    "DisplayName": "Alternate: Crystal Computer",
+    "Duration": 36.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Computer_1_C",
+    "DisplayName": "Alternate: Caterium Computer",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CircuitBoard_2_C",
+    "DisplayName": "Alternate: Caterium Circuit Board",
+    "Duration": 48.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_CircuitBoard_1_C",
+    "DisplayName": "Alternate: Silicon Circuit Board",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Cable_2_C",
+    "DisplayName": "Alternate: Quickwire Cable",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_Cable_1_C",
+    "DisplayName": "Alternate: Insulated Cable",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Ficsonium_C",
+    "DisplayName": "Ficsonium",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/HadronCollider/Build_HadronCollider.Build_HadronCollider_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FicsoniumFuelRod_C",
+    "DisplayName": "Ficsonium Fuel Rod",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/QuantumEncoder/Build_QuantumEncoder.Build_QuantumEncoder_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SingularityCell_C",
+    "DisplayName": "Singularity Cell",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpaceElevatorPart_11_C",
+    "DisplayName": "Ballistic Warp Drive",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FilterHazmat_C",
+    "DisplayName": "Iodine-Infused Filter",
+    "Duration": 16.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Quickwire_C",
+    "DisplayName": "Quickwire",
+    "Duration": 5.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Biofuel_C",
+    "DisplayName": "Solid Biofuel",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AutomatedWorkBench/Build_AutomatedWorkBench.Build_AutomatedWorkBench_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Protein_Hog_C",
+    "DisplayName": "Hog Protein",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Protein_Spitter_C",
+    "DisplayName": "Spitter Protein",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Biomass_Mycelia_C",
+    "DisplayName": "Biomass (Mycelia)",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PowerCrystalShard_1_C",
+    "DisplayName": "Power Shard (1)",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Gunpowder_C",
+    "DisplayName": "Black Powder",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Protein_Stinger_C",
+    "DisplayName": "Stinger Protein",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Protein_Crab_C",
+    "DisplayName": "Hatcher Protein",
+    "Duration": 3.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_AlienDNACapsule_C",
+    "DisplayName": "Alien DNA Capsule",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Biomass_AlienProtein_C",
+    "DisplayName": "Biomass (Alien Protein)",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SpikedRebar_C",
+    "DisplayName": "Iron Rebar",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_AlienPowerFuel_C",
+    "DisplayName": "Alien Power Matrix",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/QuantumEncoder/Build_QuantumEncoder.Build_QuantumEncoder_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CartridgeSmart_C",
+    "DisplayName": "Homing Rifle Ammo",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Rebar_Stunshot_C",
+    "DisplayName": "Stun Rebar",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_FilterGasMask_C",
+    "DisplayName": "Gas Filter",
+    "Duration": 8.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_NobeliskGas_C",
+    "DisplayName": "Gas Nobelisk",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Alternate_PolyesterFabric_C",
+    "DisplayName": "Alternate: Polyester Fabric",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Fabric_C",
+    "DisplayName": "Fabric",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_SyntheticPowerShard_C",
+    "DisplayName": "Synthetic Power Shard",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/QuantumEncoder/Build_QuantumEncoder.Build_QuantumEncoder_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PowerCrystalShard_3_C",
+    "DisplayName": "Power Shard (5)",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_PowerCrystalShard_2_C",
+    "DisplayName": "Power Shard (2)",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_NobeliskShockwave_C",
+    "DisplayName": "Pulse Nobelisk",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Rebar_Spreadshot_C",
+    "DisplayName": "Shatter Rebar",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CartridgeChaos_Packaged_C",
+    "DisplayName": "Turbo Rifle Ammo",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CartridgeChaos_C",
+    "DisplayName": "Turbo Rifle Ammo",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/Blender/Build_Blender.Build_Blender_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_NobeliskNuke_C",
+    "DisplayName": "Nuke Nobelisk",
+    "Duration": 120.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Cartridge_C",
+    "DisplayName": "Rifle Ammo",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Rebar_Explosive_C",
+    "DisplayName": "Explosive Rebar",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ManufacturerMk1/Build_ManufacturerMk1.Build_ManufacturerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_NobeliskCluster_C",
+    "DisplayName": "Cluster Nobelisk",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Nobelisk_C",
+    "DisplayName": "Nobelisk",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_GunpowderMK2_C",
+    "DisplayName": "Smokeless Powder",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/OilRefinery/Build_OilRefinery.Build_OilRefinery_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasWreath_C",
+    "DisplayName": "FICSMAS Wreath",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Snowball_C",
+    "DisplayName": "Snowball",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasStar_C",
+    "DisplayName": "FICSMAS Wonder Star",
+    "Duration": 60.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasBall3_C",
+    "DisplayName": "Copper FICSMAS Ornament",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasBall4_C",
+    "DisplayName": "Iron FICSMAS Ornament",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/FoundryMk1/Build_FoundryMk1.Build_FoundryMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasBallCluster_C",
+    "DisplayName": "FICSMAS Ornament Bundle",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasBall1_C",
+    "DisplayName": "Red FICSMAS Ornament",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasBall2_C",
+    "DisplayName": "Blue FICSMAS Ornament",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Snow_C",
+    "DisplayName": "FICSMAS Actual Snow",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasBranch_C",
+    "DisplayName": "FICSMAS Tree Branch",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_XmasBow_C",
+    "DisplayName": "FICSMAS Bow",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_CandyCane_C",
+    "DisplayName": "Candy Cane",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Biomass_Leaves_C",
+    "DisplayName": "Biomass (Leaves)",
+    "Duration": 5.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Biomass_Wood_C",
+    "DisplayName": "Biomass (Wood)",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IronPlateReinforced_C",
+    "DisplayName": "Reinforced Iron Plate",
+    "Duration": 12.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Concrete_C",
+    "DisplayName": "Concrete",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Screw_C",
+    "DisplayName": "Screws",
+    "Duration": 6.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Cable_C",
+    "DisplayName": "Cable",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Wire_C",
+    "DisplayName": "Wire",
+    "Duration": 4.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/ConstructorMk1/Build_ConstructorMk1.Build_ConstructorMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_IngotCopper_C",
+    "DisplayName": "Copper Ingot",
+    "Duration": 2.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/Factory/SmelterMk1/Build_SmelterMk1.Build_SmelterMk1_C",
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkBenchComponent.BP_WorkBenchComponent_C",
+      "/Script/FactoryGame.FGBuildableAutomatedWorkBench"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Fireworks_01_C",
+    "DisplayName": "Sweet Fireworks",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Fireworks_02_C",
+    "DisplayName": "Fancy Fireworks",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  },
+  {
+    "ClassName": "Recipe_Fireworks_03_C",
+    "DisplayName": "Sparkly Fireworks",
+    "Duration": 24.0,
+    "ProducedIn": [
+      "/Game/FactoryGame/Buildable/-Shared/WorkBench/BP_WorkshopComponent.BP_WorkshopComponent_C",
+      "/Game/FactoryGame/Buildable/Factory/AssemblerMk1/Build_AssemblerMk1.Build_AssemblerMk1_C"
+    ],
+    "Ingredients": [],
+    "Products": []
+  }
+]

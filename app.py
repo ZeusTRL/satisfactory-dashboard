@@ -5,13 +5,14 @@ import pandas as pd
 import json
 from factory_calculator import resolve_inputs
 
-# === Load product list ===
-with open("satisfactory_recipes.json") as f:
-    raw_recipes = json.load(f)
+# === Load recipes and prepare dropdown ===
+with open("clean_recipes.json") as f:
+    RAW_RECIPES = json.load(f)
 
-PRODUCT_OPTIONS = [
-    {"label": entry["NAME"], "value": entry["NAME"]}
-    for entry in raw_recipes if "NAME" in entry
+product_options = [
+    {"label": recipe["DisplayName"], "value": recipe["Products"][0]["ItemClass"]}
+    for recipe in RAW_RECIPES
+    if recipe.get("DisplayName") and recipe.get("Products")
 ]
 
 app = dash.Dash(__name__)
@@ -24,8 +25,8 @@ app.layout = html.Div([
         html.Label("Select Product:"),
         dcc.Dropdown(
             id="product-select",
-            options=PRODUCT_OPTIONS,
-            value="Ficsonium Fuel Rod"
+            options=product_options,
+            value=product_options[0]["value"]  # Default to first item
         ),
     ], style={"marginBottom": "15px"}),
 
@@ -48,8 +49,8 @@ app.layout = html.Div([
     Input("product-select", "value"),
     Input("production-rate", "value")
 )
-def update_dashboard(product, rate):
-    chains = resolve_inputs(product, rate)
+def update_dashboard(product_class, rate):
+    chains = resolve_inputs(product_class, rate)
 
     machine_blocks = []
     input_blocks = []
