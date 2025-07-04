@@ -9,10 +9,8 @@ with open("clean_recipes.json") as f:
 # Index recipes by product item class
 RECIPE_INDEX = {}
 for recipe in RAW_RECIPES:
-    if "Alternate" in recipe["ClassName"]:
-        continue  # Skip alternate recipes for now
     for product in recipe.get("Products", []):
-        RECIPE_INDEX[product["ItemClass"]] = recipe
+        RECIPE_INDEX.setdefault(product["ItemClass"], []).append(recipe)
 
 
 def calculate_factory(product_class: str, target_rate: float):
