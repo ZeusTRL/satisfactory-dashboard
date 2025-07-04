@@ -9,29 +9,29 @@ with open("clean_recipes.json") as f:
 # === Build recipe index with preferred sorting ===
 RECIPE_INDEX = {}
 
-def is_clean_recipe(r):
-    return (
-        "Alternate" not in r["ClassName"]
-        and "Christmas" not in r["ClassName"]
-        and len(r.get("Ingredients", [])) > 0
-        and len(r.get("Products", [])) > 0
-    )
-
 for recipe in RAW_RECIPES:
-    if not is_clean_recipe(recipe):
+    if len(recipe.get("Ingredients", [])) == 0 or len(recipe.get("Products", [])) == 0:
         continue
     for product in recipe.get("Products", []):
         RECIPE_INDEX.setdefault(product["ItemClass"], []).append(recipe)
 
-# Prefer recipes with fewer ingredients (simplest path)
+# Sort each recipe list to prefer vanilla first (non-alternate)
 for k in RECIPE_INDEX:
-    RECIPE_INDEX[k] = sorted(RECIPE_INDEX[k], key=lambda r: len(r.get("Ingredients", [])))
+    RECIPE_INDEX[k] = sorted(
+        RECIPE_INDEX[k], key=lambda r: ("Alternate" in r["ClassName"], len(r.get("Ingredients", [])))
+    )
 
-def calculate_factory(product_class: str, target_rate: float):
+def calculate_factory(product_class: str, target_rate: float, use_alternates=False):
     if product_class not in RECIPE_INDEX:
         raise ValueError(f"No recipe found for product '{product_class}'")
 
-    recipe = RECIPE_INDEX[product_class][0]  # Use preferred recipe
+    recipe_list = RECIPE_INDEX[product_class]
+
+    if not use_alternates:
+        filtered = [r for r in recipe_list if "Alternate" not in r["ClassName"]]
+        recipe = filtered[0] if filtered else recipe_list[0]
+    else:
+        recipe = recipe_list[0]
 
     product_info = next((p for p in recipe["Products"] if p["ItemClass"] == product_class), None)
     if not product_info:
@@ -56,7 +56,7 @@ def calculate_factory(product_class: str, target_rate: float):
 
     return summary
 
-def resolve_inputs(product_class: str, rate: float, visited=None, depth=0, max_depth=6):
+def resolve_inputs(product_class: str, rate: float, use_alternates=False, visited=None, depth=0, max_depth=6):
     if visited is None:
         visited = set()
 
@@ -65,7 +65,7 @@ def resolve_inputs(product_class: str, rate: float, visited=None, depth=0, max_d
     visited.add(product_class)
 
     try:
-        summary = calculate_factory(product_class, rate)
+        summary = calculate_factory(product_class, rate, use_alternates=use_alternates)
     except ValueError:
         return []
 
@@ -80,7 +80,7 @@ def resolve_inputs(product_class: str, rate: float, visited=None, depth=0, max_d
     }]
 
     for input_item, input_rate in chain_data["Inputs"].items():
-        subchains = resolve_inputs(input_item, input_rate, visited, depth + 1, max_depth)
+        subchains = resolve_inputs(input_item, input_rate, use_alternates, visited, depth + 1, max_depth)
         chains.extend(subchains)
 
     return chains

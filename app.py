@@ -40,6 +40,17 @@ app.layout = html.Div([
     html.H1("Satisfactory Factory Dashboard"),
 
     html.Div([
+    html.Label("Include Alternate Recipes?"),
+    dcc.Checklist(
+        id="alt-recipe-toggle",
+        options=[{"label": "Yes", "value": "include"}],
+        value=[],
+        inline=True,
+        style={"marginBottom": "10px"}
+    )
+])
+
+    html.Div([
         html.Label("Select Product:"),
         dcc.Dropdown(
             id="product-select",
@@ -59,20 +70,25 @@ app.layout = html.Div([
     html.Div(id="input-table"),
 
     html.P("Dashboard running inside Docker on LXC container.")
-])
+]),
 
 @app.callback(
     Output("machine-summary", "children"),
     Output("input-table", "children"),
     Input("product-select", "value"),
     Input("production-rate", "value")
+    Input("alt-recipe-toggle", "value")
+
+
 )
 
-def update_dashboard(product_class, rate):
+def update_dashboard(product_class, rate, alt_toggle):
     
     print("Selected:", product_class, "| Rate:", rate)
     
-    chains = resolve_inputs(product_class, rate)
+    use_alternates = "include" in alt_toggle
+    chains = resolve_inputs(product_class, rate, use_alternates=use_alternates)
+
     
     if not chains:
         return html.Div("⚠️ No valid production chain found."), html.Div()
