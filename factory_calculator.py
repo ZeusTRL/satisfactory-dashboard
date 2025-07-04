@@ -21,17 +21,27 @@ for k in RECIPE_INDEX:
         RECIPE_INDEX[k], key=lambda r: ("Alternate" in r["ClassName"], len(r.get("Ingredients", [])))
     )
 
+def is_alternate_recipe(r):
+    return "Alternate" in r["ClassName"] or r["ClassName"].lower().startswith("recipe_alt")
+
 def calculate_factory(product_class: str, target_rate: float, use_alternates=False):
     if product_class not in RECIPE_INDEX:
         raise ValueError(f"No recipe found for product '{product_class}'")
 
     recipe_list = RECIPE_INDEX[product_class]
 
+    print(f"USE ALTERNATES? {use_alternates}")
+    print("Available recipes:")
+    for r in recipe_list:
+        print(" -", r["ClassName"])
+
     if not use_alternates:
-        filtered = [r for r in recipe_list if "Alternate" not in r["ClassName"]]
+        filtered = [r for r in recipe_list if not is_alternate_recipe(r)]
         recipe = filtered[0] if filtered else recipe_list[0]
     else:
         recipe = recipe_list[0]
+
+    print("Using recipe:", recipe["ClassName"])
 
     product_info = next((p for p in recipe["Products"] if p["ItemClass"] == product_class), None)
     if not product_info:
