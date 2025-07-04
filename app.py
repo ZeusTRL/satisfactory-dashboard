@@ -8,6 +8,13 @@ from factory_calculator import resolve_inputs
 # === Load recipes and prepare dropdown ===
 with open("clean_recipes.json") as f:
     RAW_RECIPES = json.load(f)
+    
+# === Build item name lookup ===
+ITEM_NAME_LOOKUP = {}
+for recipe in RAW_RECIPES:
+    for product in recipe.get("Products", []):
+        ITEM_NAME_LOOKUP[product["ItemClass"]] = recipe.get("DisplayName", product["ItemClass"])
+
 
 product_options = [
     {"label": recipe["DisplayName"], "value": recipe["Products"][0]["ItemClass"]}
@@ -57,7 +64,7 @@ def update_dashboard(product_class, rate):
 
     for chain in chains:
         machine_blocks.append(html.Div([
-            html.H3(f"{chain['name']}"),
+            html.H3(ITEM_NAME_LOOKUP.get(chain['name'], chain['name'])),
             html.Ul([
                 html.Li(f"Machine: {chain['machine']}"),
                 html.Li(f"Machines Required: {chain['machines']}")
@@ -66,9 +73,12 @@ def update_dashboard(product_class, rate):
 
         if chain["inputs"]:
             input_df = pd.DataFrame({
-                "Input Resource": list(chain["inputs"].keys()),
+                "Input Resource": [
+                    ITEM_NAME_LOOKUP.get(item, item) for item in chain["inputs"].keys()
+                ],
                 "Amount per Minute": list(chain["inputs"].values())
             })
+
 
             input_blocks.append(html.Div([
                 html.H4(f"{chain['name']} Inputs"),
