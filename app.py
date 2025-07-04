@@ -8,7 +8,7 @@ from factory_calculator import resolve_inputs
 # === Load recipes and prepare dropdown ===
 with open("clean_recipes.json") as f:
     RAW_RECIPES = json.load(f)
-    
+
 # === Build item name lookup ===
 ITEM_NAME_LOOKUP = {}
 for recipe in RAW_RECIPES:
@@ -40,22 +40,22 @@ app.layout = html.Div([
     html.H1("Satisfactory Factory Dashboard"),
 
     html.Div([
-    html.Label("Include Alternate Recipes?"),
-    dcc.Checklist(
-        id="alt-recipe-toggle",
-        options=[{"label": "Yes", "value": "include"}],
-        value=[],
-        inline=True,
-        style={"marginBottom": "10px"}
-    )
-])
+        html.Label("Include Alternate Recipes?"),
+        dcc.Checklist(
+            id="alt-recipe-toggle",
+            options=[{"label": "Yes", "value": "include"}],
+            value=[],
+            inline=True,
+            style={"marginBottom": "10px"}
+        )
+    ]),
 
     html.Div([
         html.Label("Select Product:"),
         dcc.Dropdown(
             id="product-select",
             options=product_options,
-            value=product_options[0]["value"] if product_options else None  # Pulls value or sets value to none if no value returned
+            value=product_options[0]["value"] if product_options else None
         ),
     ], style={"marginBottom": "15px"}),
 
@@ -70,26 +70,21 @@ app.layout = html.Div([
     html.Div(id="input-table"),
 
     html.P("Dashboard running inside Docker on LXC container.")
-]),
+])
 
 @app.callback(
     Output("machine-summary", "children"),
     Output("input-table", "children"),
     Input("product-select", "value"),
-    Input("production-rate", "value")
+    Input("production-rate", "value"),
     Input("alt-recipe-toggle", "value")
-
-
 )
-
 def update_dashboard(product_class, rate, alt_toggle):
-    
-    print("Selected:", product_class, "| Rate:", rate)
-    
+    print("Selected:", product_class, "| Rate:", rate, "| Alt Toggle:", alt_toggle)
     use_alternates = "include" in alt_toggle
+
     chains = resolve_inputs(product_class, rate, use_alternates=use_alternates)
 
-    
     if not chains:
         return html.Div("⚠️ No valid production chain found."), html.Div()
 
@@ -113,9 +108,8 @@ def update_dashboard(product_class, rate, alt_toggle):
                 "Amount per Minute": list(chain["inputs"].values())
             })
 
-
             input_blocks.append(html.Div([
-                html.H4(f"{chain['name']} Inputs"),
+                html.H4(f"{ITEM_NAME_LOOKUP.get(chain['name'], chain['name'])} Inputs"),
                 dash_table.DataTable(
                     columns=[{"name": col, "id": col} for col in input_df.columns],
                     data=input_df.to_dict("records"),
