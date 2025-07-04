@@ -17,7 +17,11 @@ def calculate_factory(product_class: str, target_rate: float):
     if product_class not in RECIPE_INDEX:
         raise ValueError(f"No recipe found for product '{product_class}'")
 
-    recipe = RECIPE_INDEX[product_class]
+    recipe_list = RECIPE_INDEX[product_class]
+    
+    # Optionally filter for vanilla recipes (non-alternate)
+    filtered = [r for r in recipe_list if "Alternate" not in r["ClassName"]]
+    recipe = filtered[0] if filtered else recipe_list[0]
 
     product_info = next((p for p in recipe["Products"] if p["ItemClass"] == product_class), None)
     if not product_info:
