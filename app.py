@@ -13,24 +13,26 @@ with open("dev_dump.json") as f:
 RECIPE_INDEX = {}
 ITEM_NAME_LOOKUP = {}
 
-for recipe in RAW_RECIPES:
-    data = recipe.get("Classes", {})
+for entry in RAW_RECIPES:
+    if not isinstance(entry, dict):
+        continue
 
-    products = data.get("mProduct", [])
-    ingredients = data.get("mIngredients", [])
+    # Check if this entry contains a product
+    product_name = entry.get("ClassName")
+    display_name = entry.get("mDisplayName", product_name)
 
-    if not products or not ingredients:
-        continue  # Skip non-recipe entries
+    if product_name and display_name:
+        # Populate lookup
+        ITEM_NAME_LOOKUP[product_name] = display_name
 
-    for product in products:
-        item_class = product.get("ItemClass")
-        if not item_class:
-            continue
+        # Simulate a single "recipe" using only this item as a product
+        RECIPE_INDEX.setdefault(product_name, []).append({
+            "Product": [{"ItemClass": product_name, "Amount": 1}],
+            "Ingredients": [],  # you can update this later if needed
+            "Machine": "Manual Entry",
+            "Time": 1.0
+        })
 
-        RECIPE_INDEX.setdefault(item_class, []).append(data)
-
-        display_name = product.get("DisplayName") or data.get("mDisplayName", item_class)
-        ITEM_NAME_LOOKUP[item_class] = display_name
 
 
 # === Print debug info ===
