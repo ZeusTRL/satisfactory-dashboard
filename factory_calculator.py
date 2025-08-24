@@ -6,17 +6,50 @@ from collections import defaultdict
 with open("clean_recipes.json") as f:
     RAW_RECIPES = json.load(f)
 
-# Index recipes by product item class
+# === Build recipe index with preferred sorting ===
 RECIPE_INDEX = {}
-for recipe in RAW_RECIPES:
-    for product in recipe.get("Products", []):
-        RECIPE_INDEX[product["ItemClass"]] = recipe
 
-def calculate_factory(product_class: str, target_rate: float):
+for recipe in RAW_RECIPES:
+    if len(recipe.get("Ingredients", [])) == 0 or len(recipe.get("Products", [])) == 0:
+        continue
+    for product in recipe.get("Products", []):
+        RECIPE_INDEX.setdefault(product["ItemClass"], []).append(recipe)
+
+# Sort each recipe list to prefer vanilla first (non-alternate)
+for k in RECIPE_INDEX:
+    RECIPE_INDEX[k] = sorted(
+        RECIPE_INDEX[k], key=lambda r: ("Alternate" in r["ClassName"], len(r.get("Ingredients", [])))
+    )
+
+def is_alternate_recipe(r):
+    name = r["ClassName"].lower()
+    disp = (r.get("DisplayName") or "").lower()
+    ALT_KEYWORDS = [
+        "alternate", "_alt", "alt_",  # common class hints
+        "pure", "recycled", "compacted", "insulated", "wet",
+        "cast", "steamed", "diluted", "coated", "heavy",
+        "turbo", "electrode", "sloppy", "cheap", "classic", "residual"
+    ]
+    return any(k in name for k in ALT_KEYWORDS) or any(k in disp for k in ALT_KEYWORDS)
+
+def calculate_factory(product_class: str, target_rate: float, use_alternates=False):(product_class: str, target_rate: float, use_alternates=False):
     if product_class not in RECIPE_INDEX:
         raise ValueError(f"No recipe found for product '{product_class}'")
 
-    recipe = RECIPE_INDEX[product_class]
+    recipe_list = RECIPE_INDEX[product_class]
+
+    print(f"USE ALTERNATES? {use_alternates}")
+    print("Available recipes:")
+    for r in recipe_list:
+        print(" -", r["ClassName"])
+
+    if not use_alternates:
+        filtered = [r for r in recipe_list if not is_alternate_recipe(r)]
+        recipe = filtered[0] if filtered else recipe_list[0]
+    else:
+        recipe = recipe_list[0]
+
+    print("Using recipe:", recipe["ClassName"])
 
     product_info = next((p for p in recipe["Products"] if p["ItemClass"] == product_class), None)
     if not product_info:
@@ -41,16 +74,16 @@ def calculate_factory(product_class: str, target_rate: float):
 
     return summary
 
-def resolve_inputs(product_class: str, rate: float, visited=None):
+def resolve_inputs(product_class: str, rate: float, use_alternates=False, visited=None, depth=0, max_depth=6):
     if visited is None:
         visited = set()
 
-    if product_class in visited:
+    if product_class in visited or depth > max_depth:
         return []
     visited.add(product_class)
 
     try:
-        summary = calculate_factory(product_class, rate)
+        summary = calculate_factory(product_class, rate, use_alternates=use_alternates)
     except ValueError:
         return []
 
@@ -65,8 +98,7 @@ def resolve_inputs(product_class: str, rate: float, visited=None):
     }]
 
     for input_item, input_rate in chain_data["Inputs"].items():
-        subchains = resolve_inputs(input_item, input_rate, visited)
+        subchains = resolve_inputs(input_item, input_rate, use_alternates, visited, depth + 1, max_depth)
         chains.extend(subchains)
 
     return chains
-
