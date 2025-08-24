@@ -1,116 +1,80 @@
 import json
 import dash
 from dash import dcc, html, Input, Output
+import os
 
 # Load dev_dump.json
 with open("dev_dump.json", "r") as f:
     data = json.load(f)
 
-# Separate items and recipes by NativeClass
-items_by_classname = {}
-recipes = []
-
+# Parse all item descriptors (for dropdown)
+item_descriptors = {}
 for entry in data:
-    native_class = entry.get("NativeClass", "")
-    if native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
+    if entry.get("NativeClass") == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
         for item in entry.get("Classes", []):
-            class_name = item.get("ClassName")
             display_name = item.get("mDisplayName")
-            if class_name and display_name:
-                items_by_classname[class_name] = display_name
-    elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
-        for recipe in entry.get("Classes", []):
-            recipes.append(recipe)
+            if display_name:
+                item_descriptors[display_name] = item
 
-# Initialize Dash app
+# Extract display names for the dropdown
+dropdown_options = [{"label": name, "value": name} for name in sorted(item_descriptors.keys())]
+
+# Dash App Setup
 app = dash.Dash(__name__)
-
-# Dropdown options from mDisplayName
-dropdown_options = [{"label": name, "value": name} for name in items_by_classname.values()]
+app.title = "Satisfactory Factory Planner"
 
 app.layout = html.Div([
     html.H1("Satisfactory Factory Planner"),
+    html.Label("Select a product:"),
     dcc.Dropdown(
-        id="item-dropdown",
+        id='product-dropdown',
         options=dropdown_options,
         placeholder="Select an item"
     ),
-    html.Div(id="recipe-output")
+    html.Div(id='recipe-output')
 ])
 
 @app.callback(
-    Output("recipe-output", "children"),
-    Input("item-dropdown", "value")
+    Output('recipe-output', 'children'),
+    Input('product-dropdown', 'value')
 )
-def display_recipe(selected_name):
-    if not selected_name:
-        return ""
+def display_recipe(selected_display_name):
+    if not selected_display_name:
+        return "Please select an item."
 
-    # Find the ClassName for the selected mDisplayName
-    selected_class_name = None
-    for class_name, display_name in items_by_classname.items():
-        if display_name == selected_name:
-            selected_class_name = class_name
-            break
+    print(f"[DEBUG] Selected item: {selected_display_name}")
 
-    if not selected_class_name:
-        return "Item not found."
+    # Try to find matching recipe by mDisplayName
+    matching_recipes = []
+    for entry in data:
+        if entry.get("NativeClass") == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
+            for recipe in entry.get("Classes", []):
+                recipe_display_name = recipe.get("mDisplayName", "")
+                recipe_class_name = recipe.get("ClassName", "")
 
-    # Derive the item base name for matching recipe class
-    item_base = selected_class_name.replace("Desc_", "").replace("_C", "")
-    print(f"\n🔽 Selected item: {selected_name}")
-    print(f"🔍 Looking for recipes ending in: {item_base}_C")
+                if recipe_display_name == selected_display_name and "Alternate" not in recipe_class_name:
+                    print(f"[MATCH] Found matching recipe: {recipe_class_name}")
+                    matching_recipes.append(recipe)
 
-    matching_recipe = None
-    for recipe in recipes:
-        recipe_class = recipe.get("ClassName", "")
-        if recipe_class.endswith(f"{item_base}_C") and "Alternate" not in recipe_class:
-            print(f"✅ Matched recipe: {recipe_class}")
-            matching_recipe = recipe
-            break
-        else:
-            print(f"⛔ Skipped: {recipe_class}")
+    if not matching_recipes:
+        print("[INFO] No matching recipe found.")
+        return f"No non-alternate recipe found for: {selected_display_name}"
 
-    if not matching_recipe:
-        return "No matching recipe found."
+    # Use the first match
+    recipe = matching_recipes[0]
 
-    # Display recipe details
-    output = []
-    output.append(html.H3(f"Recipe: {matching_recipe.get('mDisplayName', 'Unknown')}"))
+    # Parse ingredients
+    ingredients_raw = recipe.get("mIngredients", "")
+    products_raw = recipe.get("mProduct", "")
+    duration = recipe.get("mManufactoringDuration", "Unknown")
 
-    ingredients_str = matching_recipe.get("mIngredients", "")
-    product_str = matching_recipe.get("mProduct", "")
-    duration = matching_recipe.get("mManufactoringDuration", "N/A")
-    produced_in = matching_recipe.get("mProducedIn", "")
+    return html.Div([
+        html.H3(f"Recipe: {selected_display_name}"),
+        html.P(f"Duration: {duration} seconds"),
+        html.P(f"Ingredients Raw: {ingredients_raw}"),
+        html.P(f"Products Raw: {products_raw}"),
+        html.P("You can now parse these fields into a more readable structure.")
+    ])
 
-    output.append(html.P(f"Duration: {duration} seconds"))
-    output.append(html.P(f"Produced In: {produced_in}"))
-
-    # Parse and display ingredients
-    output.append(html.H4("Ingredients:"))
-    ingredients_clean = ingredients_str.replace("),(", ")|(").strip("()").split("|")
-    for ing in ingredients_clean:
-        try:
-            item_part, amt_part = ing.split(",Amount=")
-            item_name = item_part.split("/")[-1].replace("_C'", "").replace("'", "")
-            amount = int(amt_part.strip(")"))
-            output.append(html.P(f"{amount} x {item_name}"))
-        except Exception as e:
-            output.append(html.P(f"Failed to parse ingredient: {ing}"))
-
-    # Parse and display product(s)
-    output.append(html.H4("Output:"))
-    products_clean = product_str.replace("),(", ")|(").strip("()").split("|")
-    for prod in products_clean:
-        try:
-            item_part, amt_part = prod.split(",Amount=")
-            item_name = item_part.split("/")[-1].replace("_C'", "").replace("'", "")
-            amount = int(amt_part.strip(")"))
-            output.append(html.P(f"{amount} x {item_name}"))
-        except Exception as e:
-            output.append(html.P(f"Failed to parse product: {prod}"))
-
-    return output
-
-if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0")
+if __name__ == '__main__':
+    app.run_server(debug=True, host='0.0.0.0')
