@@ -9,3 +9,5 @@ Dockerized Python Dash dashboard for monitoring your Satisfactory factory.
 ```bash
 git clone https://github.com/ZeusTRL/satisfactory-dashboard.git
 cd satisfactory-dashboard
+
+docker compose up -d
