@@ -55,11 +55,20 @@ def update_output(selected_name):
     for recipe in recipes:
         recipe_name = recipe.get("mDisplayName", "")
         recipe_class = recipe.get("ClassName", "")
+        ingredients_raw = recipe.get("mIngredients", "")
+        products_raw = recipe.get("mProduct", "")
+        print(f"🧪 Raw Ingredients String: {ingredients_raw}")
+        print(f"🧪 Raw Products String: {products_raw}")
         if recipe_name == item_display and "Alternate" not in recipe_class:
             matched_recipes.append(recipe)
 
     if not matched_recipes:
         return html.Div(f"No standard recipe found for {selected_name}")
+    
+    print(f"✅ Found {len(matched_recipes)} recipe(s) for '{selected_name}'")
+    for r in matched_recipes:
+        print(f"➡️ Recipe ClassName: {r.get('ClassName')}, DisplayName: {r.get('mDisplayName')}")
+
 
     def parse_entries(raw_str):
         entries = []
