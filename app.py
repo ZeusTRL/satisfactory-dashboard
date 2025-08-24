@@ -83,8 +83,9 @@ def update_output(selected_name):
             amount_part = part.split("Amount=")[-1].replace(")", "")
 
             class_path = item_class_full.split("/")[-1]
-            class_name = class_path.split(".")[-1] if "." in class_path else class_path
+            class_name = class_path.split(".")[-1].strip("'") if "." in class_path else class_path.strip("'")
             display_name = CLASSNAME_TO_DISPLAYNAME.get(class_name, class_name)
+            print(f"🧩 Resolved {class_name} -> {display_name}")
 
             entries.append({
                 "Item": display_name,
