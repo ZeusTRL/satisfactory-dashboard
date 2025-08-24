@@ -2,47 +2,14 @@ import dash
 from dash import html, dcc, Input, Output
 import dash_table
 import pandas as pd
-import json
-from factory_calculator import resolve_inputs
+from factory_calculator import resolve_inputs, ITEM_NAME_LOOKUP, MACHINE_NAME_LOOKUP, RECIPE_INDEX
 
-# === Load recipes and prepare dropdown ===
-with open("dev_dump.json") as f:
-    RAW_RECIPES = json.load(f)
+# === Build product dropdown options from RECIPE_INDEX and ITEM_NAME_LOOKUP ===
+product_options = [
+    {"label": ITEM_NAME_LOOKUP.get(item_class, item_class), "value": item_class}
+    for item_class in RECIPE_INDEX
+]
 
-# === Build item name lookup ===
-ITEM_NAME_LOOKUP = {}
-for recipe in RAW_RECIPES:
-    for product in recipe.get("Products", []):
-        ITEM_NAME_LOOKUP[product["ItemClass"]] = recipe.get("DisplayName", product["ItemClass"])
-
-# === Build machine name lookup ===
-MACHINE_NAME_LOOKUP = {
-    "Build_ConstructorMk1_C": "Constructor",
-    "Build_AssemblerMk1_C": "Assembler",
-    "Build_ManufacturerMk1_C": "Manufacturer",
-    "Build_Refinery_C": "Refinery",
-    "Build_Packager_C": "Packager",
-    "Build_Blender_C": "Blender",
-    "Build_SmelterMk1_C": "Smelter",
-    "Build_FoundryMk1_C": "Foundry",
-    # Add more as needed
-}
-
-# === Build product dropdown options from dev_dump.json ===
-product_options = []
-seen = set()
-for recipe in RAW_RECIPES:
-    if recipe.get("DisplayName") and recipe.get("Products"):
-        for product in recipe["Products"]:
-            product_class = product["ItemClass"]
-            if product_class not in seen:
-                product_options.append({
-                    "label": recipe["DisplayName"],
-                    "value": product_class
-                })
-                seen.add(product_class)
-
-# === Dash App Setup ===
 app = dash.Dash(__name__)
 app.title = "Satisfactory Factory Planner"
 
@@ -82,7 +49,6 @@ app.layout = html.Div([
     html.P("Dashboard running inside Docker on LXC container.")
 ])
 
-# === Callback Wiring ===
 @app.callback(
     Output("machine-summary", "children"),
     Output("input-table", "children"),
@@ -91,13 +57,13 @@ app.layout = html.Div([
     Input("alt-recipe-toggle", "value")
 )
 def update_dashboard(product_class, rate, alt_toggle):
-    use_alternates = "include" in alt_toggle
-    print(f"[DEBUG] Selected: {product_class} | Rate: {rate} | Alternates: {use_alternates}")
+    print("Selected:", product_class, "| Rate:", rate, "| Alternate Toggle:", alt_toggle)
 
+    use_alternates = "include" in alt_toggle
     chains = resolve_inputs(product_class, rate, use_alternates=use_alternates)
 
     if not chains:
-        return html.Div("⚠️ No valid production chain found."), html.Div()
+        return html.Div("No valid production chain found."), html.Div()
 
     machine_blocks = []
     input_blocks = []
@@ -120,7 +86,7 @@ def update_dashboard(product_class, rate, alt_toggle):
             })
 
             input_blocks.append(html.Div([
-                html.H4(f"{chain['name']} Inputs"),
+                html.H4(f"{ITEM_NAME_LOOKUP.get(chain['name'], chain['name'])} Inputs"),
                 dash_table.DataTable(
                     columns=[{"name": col, "id": col} for col in input_df.columns],
                     data=input_df.to_dict("records"),
