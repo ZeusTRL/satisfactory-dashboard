@@ -20,28 +20,26 @@ for entry in dev_data:
     elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
         recipes.extend(data)
 
-# Build mapping: ClassName -> mDisplayName
-CLASSNAME_TO_DISPLAYNAME = {
-    item.get("ClassName", ""): item.get("mDisplayName", "")
-    for item in items
-}
+print(f"📦 Total entries in dev_dump.json: {len(dev_data)}")
+print(f"🛠️ Valid crafting recipes found: {len(recipes)}")
 
-# Build the dropdown options
-RECIPE_INDEX = {
-    item.get("mDisplayName", "Unknown"): item for item in items
-}
+# Build item index by display name and class name
+RECIPE_INDEX = {item.get("mDisplayName", "Unknown"): item for item in items}
+CLASSNAME_TO_DISPLAYNAME = {item.get("ClassName", ""): item.get("mDisplayName", "") for item in items}
+
+# Build dropdown options
 dropdown_options = [{"label": name, "value": name} for name in RECIPE_INDEX]
 
 # Initialize Dash app
 app = dash.Dash(__name__)
-app.title = "Satisfactory Factory Planner"
+app.title = "Satisfactory Recipe Dashboard"
 
 app.layout = html.Div([
-    html.H1("Satisfactory Factory Planner"),
+    html.H1("Satisfactory Recipe Dashboard"),
     dcc.Dropdown(
         id="item-dropdown",
         options=dropdown_options,
-        placeholder="Select a product"
+        placeholder="Select an item"
     ),
     html.Div(id="recipe-output")
 ])
@@ -60,13 +58,22 @@ def update_output(selected_name):
     item_base = item_classname.replace("Desc_", "").replace("_C", "")
     expected_recipe_class = f"Recipe_{item_base}_C"
 
+    print(f"\n🔽 Selected item: {selected_name}")
+    print(f"🔎 Looking for recipes with ClassName: {expected_recipe_class}")
+
     matched_recipes = []
     for recipe in recipes:
         recipe_class = recipe.get("ClassName", "")
-        display_name = recipe.get("mDisplayName", "")
+        display_name = recipe.get("mDisplayName", "N/A")
 
-        if expected_recipe_class == recipe_class and "Alternate" not in recipe_class:
+        if "Alternate" in recipe_class:
+            continue
+
+        if display_name == selected_name:
+            print(f"✅ MATCH: {recipe_class} | {display_name}")
             matched_recipes.append(recipe)
+        else:
+            print(f"❌ SKIP: {recipe_class} | {display_name}")
 
     if not matched_recipes:
         return html.Div(f"No standard recipe found for {selected_name}")
@@ -80,13 +87,10 @@ def update_output(selected_name):
             if not part:
                 continue
             item_class_full = part.split("ItemClass=")[-1].split(",")[0].strip('"')
-            amount_part = part.split("Amount=")[-1].replace(")", "")
-
             class_path = item_class_full.split("/")[-1]
             class_name = class_path.split(".")[-1].strip("'") if "." in class_path else class_path.strip("'")
+            amount_part = part.split("Amount=")[-1].replace(")", "")
             display_name = CLASSNAME_TO_DISPLAYNAME.get(class_name, class_name)
-            print(f"🧩 Resolved {class_name} -> {display_name}")
-
             entries.append({
                 "Item": display_name,
                 "Amount": int(amount_part) if amount_part.isdigit() else amount_part
@@ -99,11 +103,8 @@ def update_output(selected_name):
         produced_in_raw = recipe.get("mProducedIn", "")
         produced_in = [x.split(".")[-1].replace('"', '') for x in produced_in_raw.split(",")]
 
-        ingredients_raw = recipe.get("mIngredients", "")
-        products_raw = recipe.get("mProduct", "")
-
-        ingredients = parse_entries(ingredients_raw)
-        outputs = parse_entries(products_raw)
+        ingredients = parse_entries(recipe.get("mIngredients", ""))
+        outputs = parse_entries(recipe.get("mProduct", ""))
 
         recipe_components.append(html.Div([
             html.H3(f"Recipe: {recipe.get('mDisplayName', 'Unnamed')}"),
@@ -113,15 +114,13 @@ def update_output(selected_name):
             dash_table.DataTable(
                 columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
                 data=ingredients,
-                style_table={"marginBottom": "20px"},
-                style_cell={"textAlign": "left"}
+                style_table={"marginBottom": "20px"}
             ),
             html.Strong("Outputs:"),
             dash_table.DataTable(
                 columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
                 data=outputs,
-                style_table={"marginBottom": "40px"},
-                style_cell={"textAlign": "left"}
+                style_table={"marginBottom": "40px"}
             )
         ]))
 
