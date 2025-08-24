@@ -2,9 +2,34 @@ import dash
 from dash import html, dcc, Input, Output
 import dash_table
 import pandas as pd
+import json
 from factory_calculator import resolve_inputs
 
-# === Build product dropdown options from RECIPE_INDEX and ITEM_NAME_LOOKUP ===
+# === Load recipes from dev_dump.json ===
+with open("dev_dump.json") as f:
+    RAW_RECIPES = json.load(f)
+
+# === Build RECIPE_INDEX and ITEM_NAME_LOOKUP locally ===
+RECIPE_INDEX = {}
+ITEM_NAME_LOOKUP = {}
+
+for recipe in RAW_RECIPES:
+    if "Ingredients" not in recipe or "Product" not in recipe:
+        continue
+
+    products = recipe["Product"]
+    if not isinstance(products, list) or not products:
+        continue
+
+    for product in products:
+        item_class = product.get("ItemClass")
+        if item_class:
+            RECIPE_INDEX.setdefault(item_class, []).append(recipe)
+
+            display_name = product.get("DisplayName") or recipe.get("mDisplayName", item_class)
+            ITEM_NAME_LOOKUP[item_class] = display_name
+
+# === Build dropdown options ===
 product_options = [
     {"label": ITEM_NAME_LOOKUP.get(item_class, item_class), "value": item_class}
     for item_class in RECIPE_INDEX
