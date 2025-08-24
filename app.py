@@ -21,6 +21,31 @@ for entry in dev_data:
         recipes.extend(data)
 
 # Build lookup dictionaries
+
+ITEM_DISPLAY_LOOKUP = {
+    item.get("ClassName", ""): item.get("mDisplayName", "") for item in items
+}
+
+def parse_entries(raw_str):
+    entries = []
+    if not raw_str:
+        return entries
+    parts = raw_str.strip("()").split("),(")
+    for part in parts:
+        if not part:
+            continue
+        item_class_path = part.split("ItemClass=")[-1].split(",")[0].strip('"')
+        amount_part = part.split("Amount=")[-1].replace(")", "")
+        raw_class_name = item_class_path.split("/")[-1]
+        clean_class_name = raw_class_name.split(".")[-1]
+
+        display_name = ITEM_DISPLAY_LOOKUP.get(clean_class_name, clean_class_name)
+        entries.append({
+            "Item": f"{display_name} ({clean_class_name})",
+            "Amount": int(amount_part) if amount_part.isdigit() else amount_part
+        })
+    return entries
+
 RECIPE_INDEX = {item.get("mDisplayName", "Unknown"): item for item in items}
 CLASSNAME_TO_DISPLAYNAME = {item.get("ClassName", ""): item.get("mDisplayName", "") for item in items}
 
