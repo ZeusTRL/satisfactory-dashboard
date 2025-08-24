@@ -32,8 +32,9 @@ for recipe in RAW_RECIPES:
 
 
 # === Debugging: Print counts and a few entries ===
-# print("🔍 Sample raw recipe:")
-# pprint.pprint(RAW_RECIPES[0])
+print("🔍 Sample raw recipe:")
+pprint.pprint(RAW_RECIPES[0])
+print(f"✔️ Total items added to RECIPE_INDEX: {len(RECIPE_INDEX)}")
 print("🔍 Total recipes loaded from dev_dump.json:", len(RAW_RECIPES))
 print("🔍 Total items with valid recipes:", len(RECIPE_INDEX))
 print("🔍 First few RECIPE_INDEX keys:")
