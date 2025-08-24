@@ -1,42 +1,35 @@
 import json
 import dash
-import dash_table
 from dash import dcc, html, Input, Output
 
-# Load the JSON data
+# Load dev_dump.json
 with open("dev_dump.json", "r") as f:
-    dev_data = json.load(f)
+    data = json.load(f)
 
-# Separate the entries by NativeClass
-items = []
+# Separate items and recipes by NativeClass
+items_by_classname = {}
 recipes = []
 
-for entry in dev_data:
+for entry in data:
     native_class = entry.get("NativeClass", "")
-    data = entry.get("Classes", [])
-
     if native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
-        items.extend(data)
+        for item in entry.get("Classes", []):
+            class_name = item.get("ClassName")
+            display_name = item.get("mDisplayName")
+            if class_name and display_name:
+                items_by_classname[class_name] = display_name
     elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
-        recipes.extend(data)
-
-print(f"📦 Total entries in dev_dump.json: {len(dev_data)}")
-print(f"🛠️ Valid crafting recipes found: {len(recipes)}")
-
-# Build the dropdown options from the item display names
-RECIPE_INDEX = {
-    item.get("mDisplayName", "Unknown"): item for item in items
-}
-print(f"🔍 First few RECIPE_INDEX keys: {list(RECIPE_INDEX.keys())[:5]}")
-
-dropdown_options = [{"label": name, "value": name} for name in RECIPE_INDEX]
+        for recipe in entry.get("Classes", []):
+            recipes.append(recipe)
 
 # Initialize Dash app
 app = dash.Dash(__name__)
-app.title = "Satisfactory Recipe Dashboard"
+
+# Dropdown options from mDisplayName
+dropdown_options = [{"label": name, "value": name} for name in items_by_classname.values()]
 
 app.layout = html.Div([
-    html.H1("Satisfactory Recipe Dashboard"),
+    html.H1("Satisfactory Factory Planner"),
     dcc.Dropdown(
         id="item-dropdown",
         options=dropdown_options,
@@ -47,83 +40,77 @@ app.layout = html.Div([
 
 @app.callback(
     Output("recipe-output", "children"),
-    [Input("item-dropdown", "value")]
+    Input("item-dropdown", "value")
 )
-def update_output(selected_name):
+def display_recipe(selected_name):
     if not selected_name:
-        return html.Div()
+        return ""
 
-    selected_item = RECIPE_INDEX.get(selected_name, {})
-    item_classname = selected_item.get("ClassName", "")
+    # Find the ClassName for the selected mDisplayName
+    selected_class_name = None
+    for class_name, display_name in items_by_classname.items():
+        if display_name == selected_name:
+            selected_class_name = class_name
+            break
 
-    # Convert Desc_IronPlate_C -> IronPlate
-    item_base = item_classname.replace("Desc_", "").replace("_C", "")
-    expected_recipe_class = f"Recipe_{item_base}_C"
+    if not selected_class_name:
+        return "Item not found."
 
+    # Derive the item base name for matching recipe class
+    item_base = selected_class_name.replace("Desc_", "").replace("_C", "")
     print(f"\n🔽 Selected item: {selected_name}")
-    print(f"🔎 Looking for recipes with ClassName: {expected_recipe_class}")
+    print(f"🔍 Looking for recipes ending in: {item_base}_C")
 
-    matched_recipes = []
+    matching_recipe = None
     for recipe in recipes:
         recipe_class = recipe.get("ClassName", "")
-        display_name = recipe.get("mDisplayName", "N/A")
-
-        if expected_recipe_class == recipe_class and "Alternate" not in recipe_class:
-            print(f"✅ MATCH: {recipe_class} | {display_name}")
-            matched_recipes.append(recipe)
+        if recipe_class.endswith(f"{item_base}_C") and "Alternate" not in recipe_class:
+            print(f"✅ Matched recipe: {recipe_class}")
+            matching_recipe = recipe
+            break
         else:
-            print(f"❌ SKIP: {recipe_class} | {display_name}")
+            print(f"⛔ Skipped: {recipe_class}")
 
-    if not matched_recipes:
-        return html.Div(f"No standard recipe found for {selected_name}")
+    if not matching_recipe:
+        return "No matching recipe found."
 
-    recipe_components = []
-    for recipe in matched_recipes:
-        duration = recipe.get("mManufactoringDuration", "N/A")
-        produced_in_raw = recipe.get("mProducedIn", "")
-        produced_in = [x.split(".")[-1].replace('"', '') for x in produced_in_raw.split(",")]
+    # Display recipe details
+    output = []
+    output.append(html.H3(f"Recipe: {matching_recipe.get('mDisplayName', 'Unknown')}"))
 
-        ingredients_raw = recipe.get("mIngredients", "")
-        products_raw = recipe.get("mProduct", "")
+    ingredients_str = matching_recipe.get("mIngredients", "")
+    product_str = matching_recipe.get("mProduct", "")
+    duration = matching_recipe.get("mManufactoringDuration", "N/A")
+    produced_in = matching_recipe.get("mProducedIn", "")
 
-        def parse_entries(raw_str):
-            entries = []
-            if not raw_str:
-                return entries
-            parts = raw_str.strip("()").split("),(")
-            for part in parts:
-                if not part:
-                    continue
-                item_class_part = part.split("ItemClass=")[-1].split(",")[0].strip('"').split("/")[-1]
-                amount_part = part.split("Amount=")[-1].replace(")", "")
-                entries.append({
-                    "Item": item_class_part,
-                    "Amount": int(amount_part) if amount_part.isdigit() else amount_part
-                })
-            return entries
+    output.append(html.P(f"Duration: {duration} seconds"))
+    output.append(html.P(f"Produced In: {produced_in}"))
 
-        ingredients = parse_entries(ingredients_raw)
-        outputs = parse_entries(products_raw)
+    # Parse and display ingredients
+    output.append(html.H4("Ingredients:"))
+    ingredients_clean = ingredients_str.replace("),(", ")|(").strip("()").split("|")
+    for ing in ingredients_clean:
+        try:
+            item_part, amt_part = ing.split(",Amount=")
+            item_name = item_part.split("/")[-1].replace("_C'", "").replace("'", "")
+            amount = int(amt_part.strip(")"))
+            output.append(html.P(f"{amount} x {item_name}"))
+        except Exception as e:
+            output.append(html.P(f"Failed to parse ingredient: {ing}"))
 
-        recipe_components.append(html.Div([
-            html.H3(f"Recipe: {recipe.get('mDisplayName', 'Unnamed')}"),
-            html.P(f"Duration: {duration} seconds"),
-            html.P(f"Produced In: {', '.join(produced_in)}"),
-            html.Strong("Ingredients:"),
-            dash_table.DataTable(
-                columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
-                data=ingredients,
-                style_table={"marginBottom": "20px"}
-            ),
-            html.Strong("Outputs:"),
-            dash_table.DataTable(
-                columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
-                data=outputs,
-                style_table={"marginBottom": "40px"}
-            )
-        ]))
+    # Parse and display product(s)
+    output.append(html.H4("Output:"))
+    products_clean = product_str.replace("),(", ")|(").strip("()").split("|")
+    for prod in products_clean:
+        try:
+            item_part, amt_part = prod.split(",Amount=")
+            item_name = item_part.split("/")[-1].replace("_C'", "").replace("'", "")
+            amount = int(amt_part.strip(")"))
+            output.append(html.P(f"{amount} x {item_name}"))
+        except Exception as e:
+            output.append(html.P(f"Failed to parse product: {prod}"))
 
-    return html.Div(recipe_components)
+    return output
 
 if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0", port=8050)
+    app.run_server(debug=True, host="0.0.0.0")
