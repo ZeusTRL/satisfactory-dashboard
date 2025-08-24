@@ -6,7 +6,7 @@ import json
 from factory_calculator import resolve_inputs
 
 # === Load recipes and prepare dropdown ===
-with open("clean_recipes.json") as f:
+with open("dev_dump.json") as f:
     RAW_RECIPES = json.load(f)
 
 # === Build item name lookup ===
@@ -24,21 +24,41 @@ MACHINE_NAME_LOOKUP = {
     "Build_Packager_C": "Packager",
     "Build_Blender_C": "Blender",
     "Build_SmelterMk1_C": "Smelter",
-    "Mk1.Build_FoundryMk1_C": "Foundry",
+    "Build_FoundryMk1_C": "Foundry",
     # Add more as needed
 }
 
-product_options = [
-    {"label": recipe["DisplayName"], "value": recipe["Products"][0]["ItemClass"]}
-    for recipe in RAW_RECIPES
-    if recipe.get("DisplayName") and recipe.get("Products")
-]
+# === Build product dropdown options from dev_dump.json ===
+product_options = []
+seen = set()
+for recipe in RAW_RECIPES:
+    if recipe.get("DisplayName") and recipe.get("Products"):
+        for product in recipe["Products"]:
+            product_class = product["ItemClass"]
+            if product_class not in seen:
+                product_options.append({
+                    "label": recipe["DisplayName"],
+                    "value": product_class
+                })
+                seen.add(product_class)
 
+# === Dash App Setup ===
 app = dash.Dash(__name__)
 app.title = "Satisfactory Factory Planner"
 
 app.layout = html.Div([
     html.H1("Satisfactory Factory Dashboard"),
+
+    html.Div([
+        html.Label("Include Alternate Recipes?"),
+        dcc.Checklist(
+            id="alt-recipe-toggle",
+            options=[{"label": "Yes", "value": "include"}],
+            value=[],
+            inline=True,
+            style={"marginBottom": "10px"}
+        )
+    ]),
 
     html.Div([
         html.Label("Select Product:"),
@@ -54,17 +74,6 @@ app.layout = html.Div([
         dcc.Input(id="production-rate", type="number", min=1, step=1, value=100),
     ], style={"marginBottom": "25px"}),
 
-    html.Div([
-        html.Label("Include Alternate Recipes?"),
-        dcc.Checklist(
-            id="alt-recipe-toggle",
-            options=[{"label": "Yes", "value": "include"}],
-            value=[],
-            inline=True,
-            style={"marginBottom": "15px"}
-        )
-    ]),
-
     html.Div(id="machine-summary", style={"marginTop": "25px"}),
 
     html.H2("Input Resource Breakdown"),
@@ -73,7 +82,7 @@ app.layout = html.Div([
     html.P("Dashboard running inside Docker on LXC container.")
 ])
 
-
+# === Callback Wiring ===
 @app.callback(
     Output("machine-summary", "children"),
     Output("input-table", "children"),
@@ -83,7 +92,7 @@ app.layout = html.Div([
 )
 def update_dashboard(product_class, rate, alt_toggle):
     use_alternates = "include" in alt_toggle
-    print(f"Selected: {product_class} | Rate: {rate} | Use Alternates: {use_alternates}")
+    print(f"[DEBUG] Selected: {product_class} | Rate: {rate} | Alternates: {use_alternates}")
 
     chains = resolve_inputs(product_class, rate, use_alternates=use_alternates)
 
@@ -122,7 +131,6 @@ def update_dashboard(product_class, rate, alt_toggle):
             ]))
 
     return html.Div(machine_blocks), html.Div(input_blocks)
-
 
 if __name__ == "__main__":
     app.run_server(host="0.0.0.0", port=8050)
