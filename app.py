@@ -3,6 +3,7 @@ from dash import html, dcc, Input, Output
 import dash_table
 import pandas as pd
 import json
+import pprint
 from factory_calculator import resolve_inputs
 
 # === Load recipes from dev_dump.json ===
@@ -29,6 +30,8 @@ for recipe in RAW_RECIPES:
             ITEM_NAME_LOOKUP[item_class] = display_name
 
 # === Debugging: Print counts and a few entries ===
+print("🔍 Sample raw recipe:")
+pprint.pprint(RAW_RECIPES[0])
 print("🔍 Total recipes loaded from dev_dump.json:", len(RAW_RECIPES))
 print("🔍 Total items with valid recipes:", len(RECIPE_INDEX))
 print("🔍 First few RECIPE_INDEX keys:")
