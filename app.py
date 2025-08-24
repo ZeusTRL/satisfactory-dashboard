@@ -14,22 +14,24 @@ RECIPE_INDEX = {}
 ITEM_NAME_LOOKUP = {}
 
 for recipe in RAW_RECIPES:
-    products = recipe.get("Product") or recipe.get("mProduct", [])
-    ingredients = recipe.get("Ingredients") or recipe.get("mIngredients", [])
+    data = recipe.get("Classes", {})
 
-    # Skip if no products or ingredients
+    products = data.get("mProduct", [])
+    ingredients = data.get("mIngredients", [])
+
     if not products or not ingredients:
-        continue
+        continue  # Skip non-recipe entries
 
     for product in products:
         item_class = product.get("ItemClass")
         if not item_class:
             continue
 
-        RECIPE_INDEX.setdefault(item_class, []).append(recipe)
+        RECIPE_INDEX.setdefault(item_class, []).append(data)
 
-        display_name = product.get("DisplayName") or recipe.get("mDisplayName", item_class)
+        display_name = product.get("DisplayName") or data.get("mDisplayName", item_class)
         ITEM_NAME_LOOKUP[item_class] = display_name
+
 
 # === Print debug info ===
 print(f"📦 Total recipes loaded from dev_dump.json: {len(RAW_RECIPES)}")
