@@ -1,5 +1,6 @@
 import dash
-from dash import html, dcc, Input, Output, dash_table
+from dash import html, dcc, Input, Output
+import dash_table
 import pandas as pd
 import json
 from factory_calculator import resolve_inputs
@@ -23,11 +24,10 @@ MACHINE_NAME_LOOKUP = {
     "Build_Packager_C": "Packager",
     "Build_Blender_C": "Blender",
     "Build_SmelterMk1_C": "Smelter",
-    "Build_FoundryMk1_C": "Foundry",  # fixed key
+    "Mk1.Build_FoundryMk1_C": "Foundry",
     # Add more as needed
 }
 
-# === Dropdown options (DisplayName shown, ItemClass used) ===
 product_options = [
     {"label": recipe["DisplayName"], "value": recipe["Products"][0]["ItemClass"]}
     for recipe in RAW_RECIPES
@@ -41,34 +41,11 @@ app.layout = html.Div([
     html.H1("Satisfactory Factory Dashboard"),
 
     html.Div([
-        html.Label("Include Alternate Recipes?"),
-        dcc.Checklist(
-            id="alt-recipe-toggle",
-            options=[{"label": "Yes", "value": "include"}],
-<<<<<<< HEAD
-            value=[],  # [] = off, ["include"] = on
-            inline=True,
-            style={"marginBottom": "10px"}
-        )
-    ], style={"marginBottom": "10px"}),
-=======
-            value=[],
-            inline=True,
-            style={"marginBottom": "10px"}
-        )
-    ]),
->>>>>>> ddf9e6137eb96d3df327d113510bbb8dbe112707
-
-    html.Div([
         html.Label("Select Product:"),
         dcc.Dropdown(
             id="product-select",
             options=product_options,
-<<<<<<< HEAD
-            value=product_options[0]["value"] if product_options else None  # safe default
-=======
             value=product_options[0]["value"] if product_options else None
->>>>>>> ddf9e6137eb96d3df327d113510bbb8dbe112707
         ),
     ], style={"marginBottom": "15px"}),
 
@@ -76,6 +53,17 @@ app.layout = html.Div([
         html.Label("Target Production Rate (per minute):"),
         dcc.Input(id="production-rate", type="number", min=1, step=1, value=100),
     ], style={"marginBottom": "25px"}),
+
+    html.Div([
+        html.Label("Include Alternate Recipes?"),
+        dcc.Checklist(
+            id="alt-recipe-toggle",
+            options=[{"label": "Yes", "value": "include"}],
+            value=[],
+            inline=True,
+            style={"marginBottom": "15px"}
+        )
+    ]),
 
     html.Div(id="machine-summary", style={"marginTop": "25px"}),
 
@@ -85,6 +73,7 @@ app.layout = html.Div([
     html.P("Dashboard running inside Docker on LXC container.")
 ])
 
+
 @app.callback(
     Output("machine-summary", "children"),
     Output("input-table", "children"),
@@ -93,20 +82,9 @@ app.layout = html.Div([
     Input("alt-recipe-toggle", "value")
 )
 def update_dashboard(product_class, rate, alt_toggle):
-<<<<<<< HEAD
-    # Basic guards
-    if not product_class or rate is None:
-        return html.Div("Select a product and rate to begin."), html.Div()
-
-    use_alternates = "include" in (alt_toggle or [])
-    print("Selected:", product_class, "| Rate:", rate, "| Use alternates:", use_alternates)
-
-    # Calculate chains
-=======
-    print("Selected:", product_class, "| Rate:", rate, "| Alt Toggle:", alt_toggle)
     use_alternates = "include" in alt_toggle
+    print(f"Selected: {product_class} | Rate: {rate} | Use Alternates: {use_alternates}")
 
->>>>>>> ddf9e6137eb96d3df327d113510bbb8dbe112707
     chains = resolve_inputs(product_class, rate, use_alternates=use_alternates)
 
     if not chains:
@@ -133,7 +111,7 @@ def update_dashboard(product_class, rate, alt_toggle):
             })
 
             input_blocks.append(html.Div([
-                html.H4(f"{ITEM_NAME_LOOKUP.get(chain['name'], chain['name'])} Inputs"),
+                html.H4(f"{chain['name']} Inputs"),
                 dash_table.DataTable(
                     columns=[{"name": col, "id": col} for col in input_df.columns],
                     data=input_df.to_dict("records"),
@@ -144,6 +122,7 @@ def update_dashboard(product_class, rate, alt_toggle):
             ]))
 
     return html.Div(machine_blocks), html.Div(input_blocks)
+
 
 if __name__ == "__main__":
     app.run_server(host="0.0.0.0", port=8050)

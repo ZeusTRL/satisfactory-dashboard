@@ -13,26 +13,28 @@ for recipe in RAW_RECIPES:
     if len(recipe.get("Ingredients", [])) == 0 or len(recipe.get("Products", [])) == 0:
         continue
     for product in recipe.get("Products", []):
-        RECIPE_INDEX[product["ItemClass"]] = recipe
+        RECIPE_INDEX.setdefault(product["ItemClass"], []).append(recipe)
 
-def calculate_factory(product_class: str, target_rate: float):
+# Sort each recipe list to prefer vanilla first (non-alternate)
+for k in RECIPE_INDEX:
+    RECIPE_INDEX[k] = sorted(
+        RECIPE_INDEX[k], key=lambda r: ("Alternate" in r["ClassName"], len(r.get("Ingredients", [])))
+    )
+
+def calculate_factory(product_class: str, target_rate: float, use_alternates=False):
     if product_class not in RECIPE_INDEX:
         raise ValueError(f"No recipe found for product '{product_class}'")
 
     recipe_list = RECIPE_INDEX[product_class]
 
-    print(f"USE ALTERNATES? {use_alternates}")
-    print("Available recipes:")
-    for r in recipe_list:
-        print(" -", r["ClassName"])
-
+    # Filter recipes based on the alternate toggle
     if not use_alternates:
-        filtered = [r for r in recipe_list if not is_alternate_recipe(r)]
-        recipe = filtered[0] if filtered else recipe_list[0]
-    else:
-        recipe = recipe_list[0]
+        recipe_list = [r for r in recipe_list if "Alternate" not in r["ClassName"]]
 
-    print("Using recipe:", recipe["ClassName"])
+    if not recipe_list:
+        raise ValueError(f"No {'alternate' if use_alternates else 'vanilla'} recipe available for '{product_class}'")
+
+    recipe = recipe_list[0]
 
     product_info = next((p for p in recipe["Products"] if p["ItemClass"] == product_class), None)
     if not product_info:
