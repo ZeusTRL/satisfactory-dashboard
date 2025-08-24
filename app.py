@@ -45,18 +45,30 @@ app.layout = html.Div([
         dcc.Checklist(
             id="alt-recipe-toggle",
             options=[{"label": "Yes", "value": "include"}],
+<<<<<<< HEAD
             value=[],  # [] = off, ["include"] = on
             inline=True,
             style={"marginBottom": "10px"}
         )
     ], style={"marginBottom": "10px"}),
+=======
+            value=[],
+            inline=True,
+            style={"marginBottom": "10px"}
+        )
+    ]),
+>>>>>>> ddf9e6137eb96d3df327d113510bbb8dbe112707
 
     html.Div([
         html.Label("Select Product:"),
         dcc.Dropdown(
             id="product-select",
             options=product_options,
+<<<<<<< HEAD
             value=product_options[0]["value"] if product_options else None  # safe default
+=======
+            value=product_options[0]["value"] if product_options else None
+>>>>>>> ddf9e6137eb96d3df327d113510bbb8dbe112707
         ),
     ], style={"marginBottom": "15px"}),
 
@@ -81,6 +93,7 @@ app.layout = html.Div([
     Input("alt-recipe-toggle", "value")
 )
 def update_dashboard(product_class, rate, alt_toggle):
+<<<<<<< HEAD
     # Basic guards
     if not product_class or rate is None:
         return html.Div("Select a product and rate to begin."), html.Div()
@@ -89,6 +102,11 @@ def update_dashboard(product_class, rate, alt_toggle):
     print("Selected:", product_class, "| Rate:", rate, "| Use alternates:", use_alternates)
 
     # Calculate chains
+=======
+    print("Selected:", product_class, "| Rate:", rate, "| Alt Toggle:", alt_toggle)
+    use_alternates = "include" in alt_toggle
+
+>>>>>>> ddf9e6137eb96d3df327d113510bbb8dbe112707
     chains = resolve_inputs(product_class, rate, use_alternates=use_alternates)
 
     if not chains:

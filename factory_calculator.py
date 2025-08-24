@@ -13,26 +13,9 @@ for recipe in RAW_RECIPES:
     if len(recipe.get("Ingredients", [])) == 0 or len(recipe.get("Products", [])) == 0:
         continue
     for product in recipe.get("Products", []):
-        RECIPE_INDEX.setdefault(product["ItemClass"], []).append(recipe)
+        RECIPE_INDEX[product["ItemClass"]] = recipe
 
-# Sort each recipe list to prefer vanilla first (non-alternate)
-for k in RECIPE_INDEX:
-    RECIPE_INDEX[k] = sorted(
-        RECIPE_INDEX[k], key=lambda r: ("Alternate" in r["ClassName"], len(r.get("Ingredients", [])))
-    )
-
-def is_alternate_recipe(r):
-    name = r["ClassName"].lower()
-    disp = (r.get("DisplayName") or "").lower()
-    ALT_KEYWORDS = [
-        "alternate", "_alt", "alt_",  # common class hints
-        "pure", "recycled", "compacted", "insulated", "wet",
-        "cast", "steamed", "diluted", "coated", "heavy",
-        "turbo", "electrode", "sloppy", "cheap", "classic", "residual"
-    ]
-    return any(k in name for k in ALT_KEYWORDS) or any(k in disp for k in ALT_KEYWORDS)
-
-def calculate_factory(product_class: str, target_rate: float, use_alternates=False):(product_class: str, target_rate: float, use_alternates=False):
+def calculate_factory(product_class: str, target_rate: float):
     if product_class not in RECIPE_INDEX:
         raise ValueError(f"No recipe found for product '{product_class}'")
 
