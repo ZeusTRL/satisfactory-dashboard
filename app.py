@@ -1,80 +1,117 @@
 import json
 import dash
+import dash_table
 from dash import dcc, html, Input, Output
-import os
 
-# Load dev_dump.json
+# Load the JSON data
 with open("dev_dump.json", "r") as f:
-    data = json.load(f)
+    dev_data = json.load(f)
 
-# Parse all item descriptors (for dropdown)
-item_descriptors = {}
-for entry in data:
-    if entry.get("NativeClass") == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
-        for item in entry.get("Classes", []):
-            display_name = item.get("mDisplayName")
-            if display_name:
-                item_descriptors[display_name] = item
+# Separate the entries by NativeClass
+items = []
+recipes = []
 
-# Extract display names for the dropdown
-dropdown_options = [{"label": name, "value": name} for name in sorted(item_descriptors.keys())]
+for entry in dev_data:
+    native_class = entry.get("NativeClass", "")
+    data = entry.get("Classes", [])
 
-# Dash App Setup
+    if native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
+        items.extend(data)
+    elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
+        recipes.extend(data)
+
+# Build lookup dictionaries
+RECIPE_INDEX = {item.get("mDisplayName", "Unknown"): item for item in items}
+CLASSNAME_TO_DISPLAYNAME = {item.get("ClassName", ""): item.get("mDisplayName", "") for item in items}
+
+dropdown_options = [{"label": name, "value": name} for name in RECIPE_INDEX]
+
+# Initialize Dash app
 app = dash.Dash(__name__)
-app.title = "Satisfactory Factory Planner"
+app.title = "Satisfactory Recipe Dashboard"
 
 app.layout = html.Div([
     html.H1("Satisfactory Factory Planner"),
-    html.Label("Select a product:"),
     dcc.Dropdown(
-        id='product-dropdown',
+        id="item-dropdown",
         options=dropdown_options,
-        placeholder="Select an item"
+        placeholder="Select a product:"
     ),
-    html.Div(id='recipe-output')
+    html.Div(id="recipe-output")
 ])
 
 @app.callback(
-    Output('recipe-output', 'children'),
-    Input('product-dropdown', 'value')
+    Output("recipe-output", "children"),
+    [Input("item-dropdown", "value")]
 )
-def display_recipe(selected_display_name):
-    if not selected_display_name:
-        return "Please select an item."
+def update_output(selected_name):
+    if not selected_name:
+        return html.Div()
 
-    print(f"[DEBUG] Selected item: {selected_display_name}")
+    selected_item = RECIPE_INDEX.get(selected_name, {})
+    item_display = selected_item.get("mDisplayName", "")
+    matched_recipes = []
 
-    # Try to find matching recipe by mDisplayName
-    matching_recipes = []
-    for entry in data:
-        if entry.get("NativeClass") == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
-            for recipe in entry.get("Classes", []):
-                recipe_display_name = recipe.get("mDisplayName", "")
-                recipe_class_name = recipe.get("ClassName", "")
+    for recipe in recipes:
+        recipe_name = recipe.get("mDisplayName", "")
+        recipe_class = recipe.get("ClassName", "")
+        if recipe_name == item_display and "Alternate" not in recipe_class:
+            matched_recipes.append(recipe)
 
-                if recipe_display_name == selected_display_name and "Alternate" not in recipe_class_name:
-                    print(f"[MATCH] Found matching recipe: {recipe_class_name}")
-                    matching_recipes.append(recipe)
+    if not matched_recipes:
+        return html.Div(f"No standard recipe found for {selected_name}")
 
-    if not matching_recipes:
-        print("[INFO] No matching recipe found.")
-        return f"No non-alternate recipe found for: {selected_display_name}"
+    def parse_entries(raw_str):
+        entries = []
+        if not raw_str:
+            return entries
+        parts = raw_str.strip("()").split("),(")
+        for part in parts:
+            try:
+                item_str = part.split("ItemClass=")[-1].split(",")[0]
+                item_class = item_str.split("/")[-1].replace('"', '').replace("'", "")
+                amount = part.split("Amount=")[-1].replace(")", "")
+                display_name = CLASSNAME_TO_DISPLAYNAME.get(item_class, item_class)
+                entries.append({
+                    "Item": display_name,
+                    "Amount": int(amount) if amount.isdigit() else amount
+                })
+            except Exception as e:
+                print(f"⚠️ Failed to parse part: {part} — {e}")
+        return entries
 
-    # Use the first match
-    recipe = matching_recipes[0]
+    recipe_components = []
+    for recipe in matched_recipes:
+        duration = recipe.get("mManufactoringDuration", "N/A")
+        produced_in_raw = recipe.get("mProducedIn", "")
+        produced_in = [x.split(".")[-1].replace('"', '').replace(")", '') for x in produced_in_raw.split(",")]
 
-    # Parse ingredients
-    ingredients_raw = recipe.get("mIngredients", "")
-    products_raw = recipe.get("mProduct", "")
-    duration = recipe.get("mManufactoringDuration", "Unknown")
+        ingredients = parse_entries(recipe.get("mIngredients", ""))
+        outputs = parse_entries(recipe.get("mProduct", ""))
 
-    return html.Div([
-        html.H3(f"Recipe: {selected_display_name}"),
-        html.P(f"Duration: {duration} seconds"),
-        html.P(f"Ingredients Raw: {ingredients_raw}"),
-        html.P(f"Products Raw: {products_raw}"),
-        html.P("You can now parse these fields into a more readable structure.")
-    ])
+        recipe_components.append(html.Div([
+            html.H3(f"Recipe: {recipe.get('mDisplayName', 'Unnamed')}"),
+            html.P(f"Duration: {duration} seconds"),
+            html.P(f"Produced In: {', '.join(produced_in)}"),
+            html.Strong("Ingredients:"),
+            dash_table.DataTable(
+                columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
+                data=ingredients,
+                style_table={"marginBottom": "20px"},
+                style_cell={'textAlign': 'left', 'padding': '5px'},
+                style_header={'fontWeight': 'bold'}
+            ),
+            html.Strong("Outputs:"),
+            dash_table.DataTable(
+                columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
+                data=outputs,
+                style_table={"marginBottom": "40px"},
+                style_cell={'textAlign': 'left', 'padding': '5px'},
+                style_header={'fontWeight': 'bold'}
+            )
+        ]))
 
-if __name__ == '__main__':
-    app.run_server(debug=True, host='0.0.0.0')
+    return html.Div(recipe_components)
+
+if __name__ == "__main__":
+    app.run_server(debug=True, host="0.0.0.0", port=8050)
