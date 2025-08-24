@@ -5,45 +5,51 @@ import pandas as pd
 import json
 from factory_calculator import resolve_inputs
 
-# === Load raw dev_dump.json ===
+# === Load recipes from dev_dump.json ===
 with open("dev_dump.json") as f:
     RAW_RECIPES = json.load(f)
 
-# === Filter valid recipes ===
-RECIPES = [entry['Classes'] for entry in RAW_RECIPES if entry.get('NativeClass') == '/Script/FactoryGame.FGRecipe']
-
 print(f"📦 Total recipes loaded from dev_dump.json: {len(RAW_RECIPES)}")
-print(f"✅ Valid crafting recipes found: {len(RECIPES)}")
 
 # === Build RECIPE_INDEX and ITEM_NAME_LOOKUP ===
 RECIPE_INDEX = {}
 ITEM_NAME_LOOKUP = {}
 
-for recipe in RECIPES:
-    if "mIngredients" not in recipe or "mProduct" not in recipe:
+valid_recipe_count = 0
+
+for recipe in RAW_RECIPES:
+    # Skip non-crafting recipes
+    if not recipe.get("Ingredients") or not recipe.get("Product"):
         continue
 
-    products = recipe["mProduct"]
-    if not isinstance(products, list) or not products:
+    # Extract product info
+    products = recipe["Product"]
+    if not isinstance(products, list):
         continue
 
     for product in products:
         item_class = product.get("ItemClass")
-        if item_class:
-            RECIPE_INDEX.setdefault(item_class, []).append(recipe)
+        if not item_class:
+            continue
 
-            display_name = product.get("DisplayName") or recipe.get("mDisplayName", item_class)
-            ITEM_NAME_LOOKUP[item_class] = display_name
+        # Save display name
+        display_name = product.get("DisplayName") or recipe.get("mDisplayName") or item_class
+        ITEM_NAME_LOOKUP[item_class] = display_name
 
-print(f"🧪 First few RECIPE_INDEX keys: {list(RECIPE_INDEX.keys())[:5]}")
+        # Add to recipe index
+        RECIPE_INDEX.setdefault(item_class, []).append(recipe)
+        valid_recipe_count += 1
 
-# === Build dropdown options ===
+print(f"✅ Valid crafting recipes found: {valid_recipe_count}")
+print(f"🔁 First few RECIPE_INDEX keys: {list(RECIPE_INDEX.keys())[:5]}")
+
+# === Create dropdown options ===
 product_options = [
     {"label": ITEM_NAME_LOOKUP.get(item_class, item_class), "value": item_class}
     for item_class in RECIPE_INDEX
 ]
 
-# === Dash App Setup ===
+# === Dash App Layout ===
 app = dash.Dash(__name__)
 app.title = "Satisfactory Factory Dashboard"
 
@@ -51,76 +57,73 @@ app.layout = html.Div([
     html.H2("Satisfactory Factory Dashboard"),
     dcc.Checklist(
         id="alternate-toggle",
-        options=[{"label": "Yes", "value": "include"}],
+        options=[{"label": "Yes", "value": "Yes"}],
         value=[],
-        labelStyle={"display": "inline-block", "margin-right": "10px"},
+        labelStyle={'display': 'inline-block'}
     ),
     html.Label("Include Alternate Recipes?"),
-    html.Br(),
+
     html.Label("Select Product:"),
     dcc.Dropdown(id="product-dropdown", options=product_options),
-    html.Br(),
+
     html.Label("Target Production Rate (per minute):"),
-    dcc.Input(id="target-rate", type="number", value=100),
-    html.Br(), html.Br(),
+    dcc.Input(id="rate-input", type="number", value=100),
+
     html.Div(id="output-recipes"),
-    html.H3("Input Resource Breakdown"),
-    html.Div(id="input-breakdown"),
-    html.Br(),
-    html.Div("Dashboard running inside Docker on LXC container.", style={"fontSize": 12, "color": "gray"}),
+    html.H4("Input Resource Breakdown"),
+    html.Div(id="output-inputs"),
+
+    html.Div("Dashboard running inside Docker on LXC container.", style={"marginTop": "40px", "fontStyle": "italic"})
 ])
 
+
 @app.callback(
-    [Output("output-recipes", "children"),
-     Output("input-breakdown", "children")],
-    [Input("product-dropdown", "value"),
-     Input("target-rate", "value"),
-     Input("alternate-toggle", "value")]
+    Output("output-recipes", "children"),
+    Output("output-inputs", "children"),
+    Input("product-dropdown", "value"),
+    Input("rate-input", "value"),
+    Input("alternate-toggle", "value")
 )
-def update_dashboard(selected_product, target_rate, alt_toggle):
-    if not selected_product or target_rate is None:
+def update_output(product_class, target_rate, toggle_value):
+    if not product_class or not target_rate:
         return "⚠️ No valid production chain found.", ""
 
-    include_alternates = "include" in alt_toggle
-    resolved_chain = resolve_inputs(selected_product, target_rate, RECIPE_INDEX, include_alternates)
+    use_alternates = "Yes" in toggle_value
 
-    if not resolved_chain:
-        return "⚠️ No valid production chain found.", ""
+    breakdown, input_summary = resolve_inputs(
+        product_class,
+        target_rate,
+        use_alternate_recipes=use_alternates,
+        RECIPE_INDEX=RECIPE_INDEX,
+        ITEM_NAME_LOOKUP=ITEM_NAME_LOOKUP
+    )
 
-    output_sections = []
-    input_sections = []
-
-    for recipe_data in resolved_chain:
-        name = recipe_data["recipe_name"]
-        machine = recipe_data["machine"]
-        count = recipe_data["machine_count"]
-        inputs = recipe_data["inputs"]
-
-        output_sections.append(html.Div([
-            html.H4(name),
-            html.Ul([
-                html.Li(f"Machine: {machine}"),
-                html.Li(f"Machines Required: {count}")
-            ])
+    recipe_display = []
+    for step in breakdown:
+        label = ITEM_NAME_LOOKUP.get(step["ItemClass"], step["ItemClass"])
+        recipe_display.append(html.H5(label))
+        recipe_display.append(html.Ul([
+            html.Li(f"Machine: {step['Machine']}"),
+            html.Li(f"Machines Required: {step['MachineCount']}")
         ]))
 
-        input_rows = [
-            html.Tr([html.Td(input["item"]), html.Td(input["amount"])])
-            for input in inputs
-        ]
+    input_tables = []
+    for item_class, amount in input_summary.items():
+        label = ITEM_NAME_LOOKUP.get(item_class, item_class)
+        df = pd.DataFrame({
+            "Input Resource": [label],
+            "Amount per Minute": [amount]
+        })
+        input_tables.append(html.H5(f"{label} Inputs"))
+        input_tables.append(dash_table.DataTable(
+            columns=[{"name": col, "id": col} for col in df.columns],
+            data=df.to_dict("records"),
+            style_table={'overflowX': 'auto'},
+            style_cell={'textAlign': 'left'},
+        ))
 
-        input_sections.append(html.Div([
-            html.H5(f"{name} Inputs"),
-            dash_table.DataTable(
-                columns=[{"name": "Input Resource", "id": "item"},
-                         {"name": "Amount per Minute", "id": "amount"}],
-                data=[{"item": input["item"], "amount": input["amount"]} for input in inputs],
-                style_table={"overflowX": "auto"},
-                style_cell={"textAlign": "left", "padding": "5px"},
-            )
-        ]))
+    return recipe_display, input_tables
 
-    return output_sections, input_sections
 
 if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0", port=8050)
+    app.run_server(host="0.0.0.0", port=8050, debug=True)
