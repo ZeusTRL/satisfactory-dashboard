@@ -15,10 +15,10 @@ RECIPE_INDEX = {}
 ITEM_NAME_LOOKUP = {}
 
 for recipe in RAW_RECIPES:
-    if "Ingredients" not in recipe or "Product" not in recipe:
+    if "mIngredients" not in recipe or "mProduct" not in recipe:
         continue
 
-    products = recipe["Product"]
+    products = recipe["mProduct"]
     if not isinstance(products, list) or not products:
         continue
 
@@ -26,12 +26,14 @@ for recipe in RAW_RECIPES:
         item_class = product.get("ItemClass")
         if item_class:
             RECIPE_INDEX.setdefault(item_class, []).append(recipe)
-            display_name = product.get("DisplayName") or recipe.get("mDisplayName", item_class)
+
+            display_name = product.get("DisplayName") or recipe.get("mDisplayName") or item_class
             ITEM_NAME_LOOKUP[item_class] = display_name
 
+
 # === Debugging: Print counts and a few entries ===
-print("🔍 Sample raw recipe:")
-pprint.pprint(RAW_RECIPES[0])
+# print("🔍 Sample raw recipe:")
+# pprint.pprint(RAW_RECIPES[0])
 print("🔍 Total recipes loaded from dev_dump.json:", len(RAW_RECIPES))
 print("🔍 Total items with valid recipes:", len(RECIPE_INDEX))
 print("🔍 First few RECIPE_INDEX keys:")
