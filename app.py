@@ -1,134 +1,124 @@
-import json
-import ast
-import dash
-from dash import html, dcc, Input, Output, callback
-import dash_table
 
-# Load the JSON
-with open("dev_dump.json") as f:
+import json
+import dash
+import dash_table
+from dash import dcc, html, Input, Output
+
+# Load the JSON data
+with open("dev_dump.json", "r") as f:
     dev_data = json.load(f)
 
-# Separate NativeClasses
-item_descriptors = []
-recipes_raw = []
-machines_raw = []
+# Separate the entries by NativeClass
+items = []
+recipes = []
+machines = []
 
 for entry in dev_data:
     native_class = entry.get("NativeClass", "")
     data = entry.get("Classes", [])
 
     if native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
-        item_descriptors.extend(data)
+        items.extend(data)
     elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
-        recipes_raw.extend(data)
+        recipes.extend(data)
     elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGBuildableManufacturer'":
-        machines_raw.extend(data)
+        machines.extend(data)
 
-# Index items and machines by ClassName
-ITEM_INDEX = {item["ClassName"]: item["mDisplayName"] for item in item_descriptors}
-MACHINE_INDEX = {m["ClassName"]: m.get("mDisplayName", m["ClassName"]) for m in machines_raw}
+# Create lookup dictionaries
+ITEM_LOOKUP = {item["ClassName"]: item.get("mDisplayName", item["ClassName"]) for item in items}
+MACHINE_LOOKUP = {machine["ClassName"]: machine.get("mDisplayName", machine["ClassName"]) for machine in machines}
 
-# Build reverse index from product ClassName to recipe object
-PRODUCT_TO_RECIPE = {}
-for recipe in recipes_raw:
-    product_str = recipe.get("mProduct", "")
-    try:
-        parsed = ast.literal_eval(product_str)
-        for product in parsed:
-            class_path = product["ItemClass"]
-            class_name = class_path.split(".")[-1].replace("'", "")
-            if "Alternate" not in recipe["ClassName"]:
-                PRODUCT_TO_RECIPE[class_name] = recipe
-    except Exception as e:
-        print(f"❌ Failed to parse mProduct: {product_str} | Error: {e}")
+RECIPE_INDEX = {
+    item.get("mDisplayName", "Unknown"): item for item in items
+}
 
-print(f"🔍 Valid PRODUCT_TO_RECIPE entries: {len(PRODUCT_TO_RECIPE)}")
-for k in list(PRODUCT_TO_RECIPE.keys())[:10]:
-    print(f"🔸 {k}")
+dropdown_options = [{"label": name, "value": name} for name in RECIPE_INDEX]
 
-# Construct dropdown options only for valid items
-dropdown_options = [
-    {'label': ITEM_INDEX.get(prod, prod), 'value': prod}
-    for prod in PRODUCT_TO_RECIPE.keys()
-    if prod in ITEM_INDEX
-]
-
-print(f"🧾 Dropdown will include {len(dropdown_options)} items")
-
-# Dash setup
+# Initialize Dash app
 app = dash.Dash(__name__)
-app.title = "Satisfactory Factory Planner"
+app.title = "Satisfactory Recipe Dashboard"
 
 app.layout = html.Div([
     html.H1("Satisfactory Recipe Dashboard"),
-    dcc.Dropdown(id="product-dropdown", options=dropdown_options, placeholder="Select an item"),
+    dcc.Dropdown(
+        id="item-dropdown",
+        options=dropdown_options,
+        placeholder="Select an item"
+    ),
     html.Div(id="recipe-output")
 ])
 
-@callback(
-    Output('recipe-output', 'children'),
-    [Input('product-dropdown', 'value')]
+@app.callback(
+    Output("recipe-output", "children"),
+    [Input("item-dropdown", "value")]
 )
-def update_output(product_classname):
-    if not product_classname:
+def update_output(selected_name):
+    if not selected_name:
         return html.Div()
 
-    recipe = PRODUCT_TO_RECIPE.get(product_classname)
-    if not recipe:
-        return html.Div(f"No recipe found for {product_classname}")
+    selected_item = RECIPE_INDEX.get(selected_name, {})
+    item_classname = selected_item.get("ClassName", "")
 
-    def parse_io(raw_str):
-        entries = []
-        try:
-            parsed = ast.literal_eval(raw_str)
-            for entry in parsed:
-                class_path = entry["ItemClass"]
-                class_name = class_path.split(".")[-1].replace("'", "")
-                display_name = ITEM_INDEX.get(class_name, class_name)
+    item_base = item_classname.replace("Desc_", "").replace("_C", "")
+    expected_recipe_class = f"Recipe_{item_base}_C"
+
+    matched_recipes = []
+    for recipe in recipes:
+        recipe_class = recipe.get("ClassName", "")
+        if expected_recipe_class == recipe_class and "Alternate" not in recipe_class:
+            matched_recipes.append(recipe)
+
+    if not matched_recipes:
+        return html.Div(f"No standard recipe found for {selected_name}")
+
+    recipe_components = []
+    for recipe in matched_recipes:
+        duration = recipe.get("mManufactoringDuration", "N/A")
+        produced_in_raw = recipe.get("mProducedIn", "")
+        produced_in = [
+            MACHINE_LOOKUP.get(x.split(".")[-1].replace('"', ''), x.split(".")[-1].replace('"', ''))
+            for x in produced_in_raw.strip("()").split(",")
+        ]
+
+        def parse_entries(raw_str):
+            entries = []
+            if not raw_str:
+                return entries
+            parts = raw_str.strip("()").split("),(")
+            for part in parts:
+                if not part:
+                    continue
+                item_class_part = part.split("ItemClass=")[-1].split(",")[0].strip('"').split("/")[-1]
+                class_key = item_class_part.split(".")[-1]
+                amount_part = part.split("Amount=")[-1].replace(")", "")
                 entries.append({
-                    "Item": display_name,
-                    "Amount": entry["Amount"]
+                    "Item": ITEM_LOOKUP.get(class_key, class_key),
+                    "Amount": int(amount_part) if amount_part.isdigit() else amount_part
                 })
-        except Exception as e:
-            print(f"❌ Error parsing IO: {raw_str} | {e}")
-        return entries
+            return entries
 
-    ingredients = parse_io(recipe.get("mIngredients", ""))
-    outputs = parse_io(recipe.get("mProduct", ""))
-    duration = recipe.get("mManufactoringDuration", "N/A")
+        ingredients = parse_entries(recipe.get("mIngredients", ""))
+        outputs = parse_entries(recipe.get("mProduct", ""))
 
-    # Extract machine ClassNames
-    produced_in_raw = recipe.get("mProducedIn", "")
-    try:
-        produced_in_list = ast.literal_eval(produced_in_raw)
-        machines = []
-        for entry in produced_in_list:
-            machine_class = entry.split(".")[-1].replace('"', '')
-            if machine_class.startswith("Build_"):
-                machines.append(MACHINE_INDEX.get(machine_class, machine_class))
-    except Exception as e:
-        print(f"❌ Error parsing mProducedIn: {produced_in_raw} | {e}")
-        machines = [produced_in_raw]  # fallback
+        recipe_components.append(html.Div([
+            html.H3(f"Recipe: {recipe.get('mDisplayName', 'Unnamed')}"),
+            html.P(f"Duration: {duration} seconds"),
+            html.P(f"Produced In: {', '.join(produced_in)}"),
+            html.Strong("Ingredients:"),
+            dash_table.DataTable(
+                columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
+                data=ingredients,
+                style_table={"marginBottom": "20px"}
+            ),
+            html.Strong("Outputs:"),
+            dash_table.DataTable(
+                columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
+                data=outputs,
+                style_table={"marginBottom": "40px"}
+            )
+        ]))
 
-    return html.Div([
-        html.H2(f"Recipe: {ITEM_INDEX.get(product_classname, product_classname)}"),
-        html.P(f"Duration: {duration} seconds"),
-        html.P(f"Produced In: {', '.join(machines)}"),
+    return html.Div(recipe_components)
 
-        html.H3("Ingredients"),
-        dash_table.DataTable(
-            columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
-            data=ingredients,
-            style_table={"marginBottom": "20px"}
-        ),
-
-        html.H3("Outputs"),
-        dash_table.DataTable(
-            columns=[{"name": k, "id": k} for k in ["Item", "Amount"]],
-            data=outputs,
-            style_table={"marginBottom": "40px"}
-        )
-    ])
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run_server(debug=True, host="0.0.0.0", port=8050)
