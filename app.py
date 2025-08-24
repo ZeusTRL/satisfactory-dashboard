@@ -31,24 +31,24 @@ dropdown_options = [
 ]
 
 # Helper to parse item strings like: (ItemClass="...",Amount=X)
+import re
+
 def parse_item_string(raw_string):
     entries = []
     if not raw_string:
         return entries
 
-    parts = raw_string.strip("()").split("),(")
-    for part in parts:
-        item_class = ""
-        amount = 0
-        if "ItemClass=" in part and "Amount=" in part:
-            try:
-                item_class = part.split("ItemClass=")[1].split(",")[0].strip('"').split("/")[-1]
-                amount = int(part.split("Amount=")[1].replace(")", ""))
-                display_name = ITEM_INDEX.get(item_class, item_class)
-                entries.append((display_name, amount))
-            except Exception as e:
-                print(f"Error parsing part: {part} -> {e}")
+    # Find all matches using regex
+    pattern = r'ItemClass="[^"]*Desc_([A-Za-z0-9_]+_C)".*?Amount=(\d+)'
+    matches = re.findall(pattern, raw_string)
+
+    for class_suffix, amount in matches:
+        full_class_name = f"Desc_{class_suffix}"
+        display_name = ITEM_INDEX.get(full_class_name, full_class_name)
+        entries.append((display_name, int(amount)))
+
     return entries
+
 
 # Start Dash app
 app = dash.Dash(__name__)
