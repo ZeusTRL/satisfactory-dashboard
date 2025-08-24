@@ -2,7 +2,7 @@ import dash
 from dash import html, dcc, Input, Output
 import dash_table
 import pandas as pd
-from factory_calculator import resolve_inputs, ITEM_NAME_LOOKUP, MACHINE_NAME_LOOKUP, RECIPE_INDEX
+from factory_calculator import resolve_inputs
 
 # === Build product dropdown options from RECIPE_INDEX and ITEM_NAME_LOOKUP ===
 product_options = [
