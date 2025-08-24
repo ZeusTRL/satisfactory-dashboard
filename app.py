@@ -9,6 +9,15 @@ from factory_calculator import resolve_inputs
 with open("dev_dump.json") as f:
     RAW_RECIPES = json.load(f)
 
+print("Total recipes loaded:", len(RAW_RECIPES))
+
+valid_recipes = 0
+for recipe in RAW_RECIPES:
+    if "Product" in recipe and isinstance(recipe["Product"], list) and recipe["Product"]:
+        valid_recipes += 1
+
+print("Recipes with valid 'Product' lists:", valid_recipes)
+
 # === Build RECIPE_INDEX and ITEM_NAME_LOOKUP locally ===
 RECIPE_INDEX = {}
 ITEM_NAME_LOOKUP = {}
@@ -24,6 +33,7 @@ for recipe in RAW_RECIPES:
     for product in products:
         item_class = product.get("ItemClass")
         if item_class:
+            print(f"Found product: {product.get('ItemClass')} - {product.get('DisplayName')}")
             RECIPE_INDEX.setdefault(item_class, []).append(recipe)
             display_name = product.get("DisplayName") or recipe.get("mDisplayName", item_class)
             ITEM_NAME_LOOKUP[item_class] = display_name
