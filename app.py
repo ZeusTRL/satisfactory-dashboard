@@ -25,7 +25,6 @@ for recipe in RAW_RECIPES:
         item_class = product.get("ItemClass")
         if item_class:
             RECIPE_INDEX.setdefault(item_class, []).append(recipe)
-
             display_name = product.get("DisplayName") or recipe.get("mDisplayName", item_class)
             ITEM_NAME_LOOKUP[item_class] = display_name
 
@@ -35,6 +34,7 @@ product_options = [
     for item_class in RECIPE_INDEX
 ]
 
+# === Initialize Dash app ===
 app = dash.Dash(__name__)
 app.title = "Satisfactory Factory Planner"
 
@@ -42,15 +42,12 @@ app.layout = html.Div([
     html.H1("Satisfactory Factory Dashboard"),
 
     html.Div([
-        html.Label("Include Alternate Recipes?"),
         dcc.Checklist(
-            id="alt-recipe-toggle",
-            options=[{"label": "Yes", "value": "include"}],
-            value=[],
-            inline=True,
-            style={"marginBottom": "10px"}
+            id="alternate-toggle",
+            options=[{"label": "Include Alternate Recipes?", "value": "yes"}],
+            value=[]
         )
-    ]),
+    ], style={"marginBottom": "10px"}),
 
     html.Div([
         html.Label("Select Product:"),
@@ -79,16 +76,14 @@ app.layout = html.Div([
     Output("input-table", "children"),
     Input("product-select", "value"),
     Input("production-rate", "value"),
-    Input("alt-recipe-toggle", "value")
+    Input("alternate-toggle", "value")
 )
-def update_dashboard(product_class, rate, alt_toggle):
-    print("Selected:", product_class, "| Rate:", rate, "| Alternate Toggle:", alt_toggle)
-
-    use_alternates = "include" in alt_toggle
+def update_dashboard(product_class, rate, toggle_value):
+    use_alternates = "yes" in toggle_value
     chains = resolve_inputs(product_class, rate, use_alternates=use_alternates)
 
     if not chains:
-        return html.Div("No valid production chain found."), html.Div()
+        return html.Div("⚠️ No valid production chain found."), html.Div()
 
     machine_blocks = []
     input_blocks = []
@@ -97,21 +92,19 @@ def update_dashboard(product_class, rate, alt_toggle):
         machine_blocks.append(html.Div([
             html.H3(ITEM_NAME_LOOKUP.get(chain['name'], chain['name'])),
             html.Ul([
-                html.Li(f"Machine: {MACHINE_NAME_LOOKUP.get(chain['machine'], chain['machine'])}"),
+                html.Li(f"Machine: {chain['machine']}"),
                 html.Li(f"Machines Required: {chain['machines']}")
             ])
         ]))
 
         if chain["inputs"]:
             input_df = pd.DataFrame({
-                "Input Resource": [
-                    ITEM_NAME_LOOKUP.get(item, item) for item in chain["inputs"].keys()
-                ],
+                "Input Resource": [ITEM_NAME_LOOKUP.get(item, item) for item in chain["inputs"].keys()],
                 "Amount per Minute": list(chain["inputs"].values())
             })
 
             input_blocks.append(html.Div([
-                html.H4(f"{ITEM_NAME_LOOKUP.get(chain['name'], chain['name'])} Inputs"),
+                html.H4(f"{chain['name']} Inputs"),
                 dash_table.DataTable(
                     columns=[{"name": col, "id": col} for col in input_df.columns],
                     data=input_df.to_dict("records"),
