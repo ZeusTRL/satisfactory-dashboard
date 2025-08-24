@@ -7,29 +7,20 @@ from dash import dcc, html, Input, Output
 with open("dev_dump.json", "r") as f:
     dev_data = json.load(f)
 
-# Separate the entries by NativeClass
-items = []
-recipes = []
+# Parse all item descriptors (for dropdown)
+item_descriptors = {}
+for entry in data:
+    if entry.get("NativeClass") == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
+        for item in entry.get("Classes", []):
+            display_name = item.get("mDisplayName")
+            if display_name:
+                item_descriptors[display_name] = item
 
-for entry in dev_data:
-    native_class = entry.get("NativeClass", "")
-    data = entry.get("Classes", [])
-
-    if native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
-        items.extend(data)
-    elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
-        recipes.extend(data)
+# Extract display names for the dropdown
+dropdown_options = [{"label": name, "value": name} for name in sorted(item_descriptors.keys())]
 
 print(f"📦 Total entries in dev_dump.json: {len(dev_data)}")
 print(f"🛠️ Valid crafting recipes found: {len(recipes)}")
-
-# Build the dropdown options from the item display names
-RECIPE_INDEX = {
-    item.get("mDisplayName", "Unknown"): item for item in items
-}
-print(f"🔍 First few RECIPE_INDEX keys: {list(RECIPE_INDEX.keys())[:5]}")
-
-dropdown_options = [{"label": name, "value": name} for name in RECIPE_INDEX]
 
 # Initialize Dash app
 app = dash.Dash(__name__)
