@@ -1,98 +1,85 @@
 import json
 import dash
-from dash import html, dcc, Input, Output
-import dash_table
-import re
+from dash import dcc, html, Input, Output
+import dash_bootstrap_components as dbc
 
 # Load dev_dump.json
-with open('dev_dump.json') as f:
-    raw_data = json.load(f)
+with open("dev_dump.json", "r") as f:
+    data = json.load(f)
 
-# Separate item and recipe entries by NativeClass
-item_classes = []
-recipe_classes = []
+# Extract item descriptors and recipe data
+item_descriptors = []
+recipes = []
 
-for entry in raw_data:
-    native_class = entry.get("NativeClass")
+for entry in data:
+    native_class = entry.get("NativeClass", "")
+    classes = entry.get("Classes", [])
+
     if native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'":
-        item_classes.extend(entry.get("Classes", []))
-    elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
-        recipe_classes.extend(entry.get("Classes", []))
+        item_descriptors.extend(classes)
 
-# Build a lookup table for item ClassName -> DisplayName
-item_lookup = {item["ClassName"]: item.get("mDisplayName", item["ClassName"]) for item in item_classes}
+    elif native_class == "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'":
+        recipes.extend(classes)
 
 # Build dropdown options
 dropdown_options = [
-    {"label": item.get("mDisplayName", item["ClassName"]), "value": item["ClassName"]}
-    for item in item_classes
+    {"label": item.get("mDisplayName", item.get("ClassName", "")), "value": item.get("ClassName")}
+    for item in item_descriptors
 ]
 
-# App layout
-app = dash.Dash(__name__)
+# Map ClassName to full descriptor for easy lookup
+descriptor_lookup = {item["ClassName"]: item for item in item_descriptors}
+
+# Find a matching recipe using partial ClassName match
+def find_recipe_for_product_item(item_classname):
+    partial_match = "_" + item_classname.split("_", 1)[-1]
+    for recipe in recipes:
+        if partial_match in recipe.get("ClassName", "") and item_classname in recipe.get("mProduct", ""):
+            return recipe
+    return None
+
+# Initialize Dash app
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.title = "Satisfactory Crafting Dashboard"
+
 app.layout = html.Div([
-    html.H1("Satisfactory Recipe Dashboard"),
+    html.H1("Satisfactory Crafting Dashboard"),
     dcc.Dropdown(
         id="item-dropdown",
         options=dropdown_options,
-        placeholder="Select an item"
+        placeholder="Select an item..."
     ),
-    html.Div(id="recipe-output")
+    html.Div(id="output-container", style={"whiteSpace": "pre-wrap", "marginTop": "20px"})
 ])
 
-# Parse ingredient string like:
-# "((ItemClass=\"...Desc_AluminumScrap_C'\",Amount=6),(ItemClass=\"...Desc_Silica_C'\",Amount=5))"
-def parse_item_amount_string(data_str):
-    pattern = r"ItemClass=.*?/([^/]+_C)'.*?Amount=(\d+)"
-    matches = re.findall(pattern, data_str)
-    return [(item_lookup.get(classname, classname), int(amount)) for classname, amount in matches]
-
 @app.callback(
-    Output("recipe-output", "children"),
+    Output("output-container", "children"),
     Input("item-dropdown", "value")
 )
-def display_recipe(item_classname):
-    if not item_classname:
-        return ""
+def update_output(selected_classname):
+    if not selected_classname:
+        return "Select an item to view its data."
 
-    matched_recipes = []
-    for recipe in recipe_classes:
-        if item_classname in recipe.get("mProduct", ""):
-            matched_recipes.append(recipe)
+    descriptor = descriptor_lookup.get(selected_classname)
+    if not descriptor:
+        return f"No data found for {selected_classname}."
 
-    if not matched_recipes:
-        return html.Div("No recipe found for this item.")
+    # Try to find a matching recipe
+    recipe = find_recipe_for_product_item(selected_classname)
 
-    outputs = []
-    for recipe in matched_recipes:
-        ingredients = parse_item_amount_string(recipe.get("mIngredients", ""))
-        products = parse_item_amount_string(recipe.get("mProduct", ""))
-        duration = float(recipe.get("mManufactoringDuration", "0"))
-        producers = re.findall(r'Build_(\w+)', recipe.get("mProducedIn", ""))
+    display_name = descriptor.get("mDisplayName", selected_classname)
+    output = f"### {display_name}\n\n"
+    output += f"**Descriptor:**\n```json\n{json.dumps(descriptor, indent=4)}\n```"
 
-        output = html.Div([
-            html.H3("Recipe: " + recipe.get("mDisplayName", "Unknown")),
-            html.P(f"Duration: {duration} seconds"),
-            html.P(f"Produced In: {', '.join(producers) if producers else 'N/A'}"),
+    if recipe:
+        output += f"\n\n**Recipe:**\n```json\n{json.dumps(recipe, indent=4)}\n```"
+    else:
+        output += "\n\n**No matching recipe found.**"
 
-            html.H4("Ingredients:"),
-            dash_table.DataTable(
-                columns=[{"name": "Item", "id": "item"}, {"name": "Amount", "id": "amount"}],
-                data=[{"item": item, "amount": amt} for item, amt in ingredients],
-                style_table={'width': '50%'}
-            ),
-
-            html.H4("Outputs:"),
-            dash_table.DataTable(
-                columns=[{"name": "Item", "id": "item"}, {"name": "Amount", "id": "amount"}],
-                data=[{"item": item, "amount": amt} for item, amt in products],
-                style_table={'width': '50%'}
-            ),
-            html.Hr()
-        ])
-        outputs.append(output)
-
-    return outputs
+    return output
 
 if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0", port=8050)
+    print(f"📦 Total entries in dev_dump.json: {len(data)}")
+    print(f"🔧 Valid crafting recipes found: {len(recipes)}")
+    print(f"🧪 First few dropdown keys: {[item.get('mDisplayName') for item in item_descriptors[:5]]}")
+    app.run_server(debug=True)
